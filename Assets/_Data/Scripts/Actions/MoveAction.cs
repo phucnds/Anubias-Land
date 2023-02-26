@@ -62,11 +62,11 @@ public class MoveAction : BaseAction
                 if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition)) continue;
                 if (unitGridPosition == testGridPosition) continue;
                 //if (LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition)) continue;
-                if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition)) continue;
-                if (!Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition)) continue;
+                if (!Pathfindings.Instance.IsWalkableGridPosition(testGridPosition)) continue;
+                if (!Pathfindings.Instance.HasPath(unitGridPosition, testGridPosition)) continue;
 
                 int pathfindingDistanceMultiplier = 10;
-                if (Pathfinding.Instance.GetPathLength(unitGridPosition, testGridPosition) > maxMoveDistance * pathfindingDistanceMultiplier) continue;
+                if (Pathfindings.Instance.GetPathLength(unitGridPosition, testGridPosition) > maxMoveDistance * pathfindingDistanceMultiplier) continue;
                 validGridPositionList.Add(testGridPosition);
             }
         }
@@ -76,7 +76,7 @@ public class MoveAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        List<GridPosition> pathGridPositionList = Pathfinding.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
+        List<GridPosition> pathGridPositionList = Pathfindings.Instance.FindPath(unit.GetGridPosition(), gridPosition, out int pathLength);
 
         currentPositionIndex = 0;
         positionList = new List<Vector3>();
@@ -105,12 +105,12 @@ public class MoveAction : BaseAction
             return false;
         } 
         //if (LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition)) return false;
-        if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition))
+        if (!Pathfindings.Instance.IsWalkableGridPosition(testGridPosition))
         {
             Debug.Log("GridPosition is not walkable");
             return false;
         } 
-        if (!Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition))
+        if (!Pathfindings.Instance.HasPath(unitGridPosition, testGridPosition))
         {
             Debug.Log("hasn't path");
             return false;

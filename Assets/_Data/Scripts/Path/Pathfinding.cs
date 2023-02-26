@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinding : MonoBehaviour
+public class Pathfindings : MonoBehaviour
 {
-    public static Pathfinding Instance { get; private set; }
+    public static Pathfindings Instance { get; private set; }
 
     private const int MOVE_STRAIGHT_COST = 10;
     private const int MOVE_DIAGONAL_COST = 1400;
@@ -113,7 +113,6 @@ public class Pathfinding : MonoBehaviour
                     }
                 }
             }
-
         }
 
         pathLength = 0;

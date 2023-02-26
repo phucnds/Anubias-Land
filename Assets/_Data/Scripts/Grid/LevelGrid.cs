@@ -25,7 +25,7 @@ public class LevelGrid : MonoBehaviour
 
     private void Start()
     {
-        Pathfinding.Instance.Setup(width, height, cellSize);
+        Pathfindings.Instance.Setup(width, height, cellSize);
     }
 
     public void AddUnitAtGridPosition(GridPosition gridPostition, Unit unit)
