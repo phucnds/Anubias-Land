@@ -38,7 +38,7 @@ public class GAgent : MonoBehaviour
             actions.Add(a);
     }
 
-    void Update()
+    void LateUpdate()
     {
         if(HasReachedTarget()) return;
         Planing();

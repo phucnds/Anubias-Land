@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GotoEndPoint : GAction
+public class GoToWaitingRoom : GAction
 {
     public override bool PrePerform()
     {
@@ -11,6 +11,9 @@ public class GotoEndPoint : GAction
 
     public override bool PostPerform()
     {
+        GWorld.Instance.GetWorld().ModifyState("Waiting", 1);
+        GWorld.Instance.GetQueue("patients").AddResource(gameObject);
+        beliefs.ModifyState("atHospital", 1);
         return true;
     }
 }

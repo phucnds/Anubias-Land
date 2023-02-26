@@ -8,6 +8,14 @@ TagManager:
   - Table
   - WindowOrder
   - Casher
+  - WaitingArea
+  - Cubicle
+  - Office
+  - Toilet
+  - Puddle
+  - Reception
+  - Home
+  - Lounge
   layers:
   - Default
   - TransparentFX

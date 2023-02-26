@@ -44,8 +44,6 @@ public class Pathfinding : MonoBehaviour
                 {
                     GetNode(x, z).SetIsWalkable(false);
                 }
-
-
             }
         }
     }

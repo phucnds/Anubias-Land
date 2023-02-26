@@ -1,0 +1,165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2762615350644080642
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4555209041129941354, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_Name
+      value: Doctor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4555209041129941355, guid: bc9780a40af1757429f2007c11fe21b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bc9780a40af1757429f2007c11fe21b0, type: 3}
+--- !u!1 &1828903981810461032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4555209041129941354, guid: bc9780a40af1757429f2007c11fe21b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2762615350644080642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1590739954021907557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828903981810461032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6bdff8933ac8534ca3f1ddcba6472f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Action
+  cost: 1
+  target: {fileID: 0}
+  targetTag: Lounge
+  duration: 2
+  preConditions:
+  - key: exhausted
+    value: 1
+  afterEffects:
+  - key: rested
+    value: 1
+  running: 0
+--- !u!114 &1698121111298922503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828903981810461032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff23da6c737ef34cb24e962b0589ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actions: []
+  currentAction: {fileID: 0}
+--- !u!114 &5876346774092014940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828903981810461032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad49d3bb572b3745b70b69f60d4235a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Research
+  cost: 1
+  target: {fileID: 0}
+  targetTag: 
+  duration: 2
+  preConditions:
+  - key: FreeOffice
+    value: 1
+  afterEffects:
+  - key: research
+    value: 1
+  running: 0
+--- !u!114 &2379166846371316375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828903981810461032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c8e95e7ca00be4196e1ec7350ba85d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Go to Toilet
+  cost: 1
+  target: {fileID: 0}
+  targetTag: 
+  duration: 2
+  preConditions:
+  - key: FreeToilet
+    value: 1
+  - key: busting
+    value: 1
+  afterEffects:
+  - key: relief
+    value: 1
+  running: 0

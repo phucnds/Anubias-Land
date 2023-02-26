@@ -63,12 +63,8 @@ public abstract class GAction : MonoBehaviour
         return true;
     }
 
-    public virtual bool PrePerform()
-    {
-        return true;
-    }
-    public virtual bool PostPerform()
-    {
-        return true;
-    }
+    public abstract bool PrePerform();
+    
+    public abstract bool PostPerform();
+  
 }

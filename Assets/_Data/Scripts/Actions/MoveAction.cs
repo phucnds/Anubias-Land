@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class MoveAction : BaseAction
 {
-    [SerializeField] float moveSpeed = 4f;
+    [SerializeField] float moveSpeed = 10f;
     [SerializeField] float rotateSpeed = 10f;
     [SerializeField] float stoppingDistance = .1f;
 
@@ -95,11 +95,28 @@ public class MoveAction : BaseAction
         GridPosition unitGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
         GridPosition testGridPosition = LevelGrid.Instance.GetGridPosition(destination);
 
-        if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition)) return false;
-        if (unitGridPosition == testGridPosition) return false;
+        if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition))
+        {
+            Debug.Log("IsValidGridPosition");
+            return false;
+        } 
+        if (unitGridPosition == testGridPosition){
+            Debug.Log("Same GridPosition");  
+            return false;
+        } 
         //if (LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition)) return false;
-        if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition)) return false;
-        if (!Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition)) return false;
+        if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition))
+        {
+            Debug.Log("GridPosition is not walkable");
+            return false;
+        } 
+        if (!Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition))
+        {
+            Debug.Log("hasn't path");
+            return false;
+        }
+
+        if (testGridPosition == null) return false;
 
         TakeAction(testGridPosition,onActionComplete);
         return true;
