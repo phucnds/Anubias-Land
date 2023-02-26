@@ -6,8 +6,11 @@ using UnityEngine.Events;
 
 public class MoveAction : BaseAction
 {
+    [SerializeField] float moveSpeed = 4f;
+    [SerializeField] float rotateSpeed = 10f;
+    [SerializeField] float stoppingDistance = .1f;
 
-    [SerializeField] private int maxMoveDistance = 2;
+    private int maxMoveDistance = 500;
 
     public event UnityAction OnStartMoving;
     public event UnityAction OnStopMoving;
@@ -18,20 +21,14 @@ public class MoveAction : BaseAction
 
     private void Update()
     {
-
         if (!isActive) return;
 
         Vector3 targetPosition = positionList[currentPositionIndex];
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
 
-        
-
-        float stoppingDistance = .1f;
         if (Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
-            float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
-            float rotateSpeed = 10f;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), rotateSpeed * Time.deltaTime);
         }
         else
@@ -91,6 +88,21 @@ public class MoveAction : BaseAction
 
         OnStartMoving?.Invoke();
         ActionStart(onActionComplete);
+    }
+
+    public bool MoveTo(Vector3 destination,Action onActionComplete)
+    {
+        GridPosition unitGridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        GridPosition testGridPosition = LevelGrid.Instance.GetGridPosition(destination);
+
+        if (!LevelGrid.Instance.IsValidGridPosition(testGridPosition)) return false;
+        if (unitGridPosition == testGridPosition) return false;
+        //if (LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition)) return false;
+        if (!Pathfinding.Instance.IsWalkableGridPosition(testGridPosition)) return false;
+        if (!Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition)) return false;
+
+        TakeAction(testGridPosition,onActionComplete);
+        return true;
     }
 
     public override string GetActionName()

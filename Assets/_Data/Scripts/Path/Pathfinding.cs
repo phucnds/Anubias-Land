@@ -8,7 +8,7 @@ public class Pathfinding : MonoBehaviour
     public static Pathfinding Instance { get; private set; }
 
     private const int MOVE_STRAIGHT_COST = 10;
-    private const int MOVE_DIAGONAL_COST = 1000;
+    private const int MOVE_DIAGONAL_COST = 1400;
 
     [SerializeField] private LayerMask obstaclesLayerMark;
 
@@ -68,7 +68,7 @@ public class Pathfinding : MonoBehaviour
                 GridPosition GridPosition = new GridPosition(x, z);
                 PathNode pathNode = gridSystem.GetGridObject(GridPosition);
 
-                pathNode.SetGCost(10000);
+                pathNode.SetGCost(int.MaxValue);
                 pathNode.SetHCost(0);
                 pathNode.CalculateFCost();
                 pathNode.ResetCameFromPathNode();
@@ -175,9 +175,7 @@ public class Pathfinding : MonoBehaviour
 
     private PathNode GetNode(int x, int z)
     {
-     
         return gridSystem.GetGridObject(new GridPosition(x, z));
-
     }
 
     private List<PathNode> GetNeighbourList(PathNode currentNode)
@@ -198,10 +196,10 @@ public class Pathfinding : MonoBehaviour
         if (UP) neighbourList.Add(GetNode(GridPosition.x + 0, GridPosition.z + 1));
         if (DOWN) neighbourList.Add(GetNode(GridPosition.x + 0, GridPosition.z - 1));
 
-        if (LEFT && DOWN) neighbourList.Add(GetNode(GridPosition.x - 1, GridPosition.z - 1));
-        if (LEFT && UP) neighbourList.Add(GetNode(GridPosition.x - 1, GridPosition.z + 1));
-        if (RIGHT && DOWN) neighbourList.Add(GetNode(GridPosition.x + 1, GridPosition.z - 1));
-        if (RIGHT && UP) neighbourList.Add(GetNode(GridPosition.x + 1, GridPosition.z + 1));
+        // if (LEFT && DOWN) neighbourList.Add(GetNode(GridPosition.x - 1, GridPosition.z - 1));
+        // if (LEFT && UP) neighbourList.Add(GetNode(GridPosition.x - 1, GridPosition.z + 1));
+        // if (RIGHT && DOWN) neighbourList.Add(GetNode(GridPosition.x + 1, GridPosition.z - 1));
+        // if (RIGHT && UP) neighbourList.Add(GetNode(GridPosition.x + 1, GridPosition.z + 1));
 
         return neighbourList;
     }
