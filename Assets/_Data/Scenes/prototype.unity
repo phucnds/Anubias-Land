@@ -1398,7 +1398,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a3cd22eceea5e8548b10cdb5d9b49a25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1599,6 +1599,7 @@ GameObject:
   - component: {fileID: 1799890006}
   - component: {fileID: 1799890005}
   - component: {fileID: 1799890007}
+  - component: {fileID: 1799890009}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -1705,7 +1706,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed44410415e6fb4798668052f71fd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAction: {fileID: 0}
+  currentAction: {fileID: 11400000, guid: 76015f8db717e62489fb963f37edb0eb, type: 2}
+  isIdle: 0
+  is_moving: 0
+  actionTarget: {fileID: 0}
+  mover: {fileID: 0}
 --- !u!95 &1799890008
 Animator:
   serializedVersion: 5
@@ -1726,6 +1731,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1799890009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799889996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bfa75ffc2e36224aa14ce14b169fc3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1835965813
 GameObject:
   m_ObjectHideFlags: 0
