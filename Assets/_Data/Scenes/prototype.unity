@@ -404,7 +404,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.3006394, y: -0.000000016410377, z: 0.000000005172915, w: 0.9537379}
+  m_LocalRotation: {x: 0.3006394, y: 0.000000016410377, z: -0.000000005172915, w: 0.9537379}
   m_LocalPosition: {x: 0, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -701,7 +701,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598456051}
-  m_LocalRotation: {x: 0.3006394, y: -0.000000016410377, z: 0.000000005172915, w: 0.9537379}
+  m_LocalRotation: {x: 0.3006394, y: 0.000000016410377, z: -0.000000005172915, w: 0.9537379}
   m_LocalPosition: {x: 0, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAA4IeyQe+YSmAIAAJ0FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVNtu2zAM/ZVAz9tgJ83S7G1z2nQD2gbNhj7MfWBtOhYiS4YuTdIi/z5KdmLXHWDAwuEheXiR3hiXpsbMKr3UPL9VObJvI+bP7NOoM97gHjZKrvkrnjiPPLelJ0HgPIDlivDYuxlVodU8+y43wpMjAp3khdLVVb7BRBlrCC5AGCSTVtZ7S4LeRmzfOhza/6v/j450ylBa1B0rHrDiwHIyE1DVmHu1HXkcnYLSKRAlVdJyxj66EoKbVgazhzqUmUBtHBVBhJwDlRUE+Mwl8k1ph873RWHQtqI0HBZcU3eaqOyHalpWgdk2yl5AuCAgurgMopqotx8IcTSeBEKhVXVzSh2HomzJs+0DHDIwttfWPrx4r93JHYgtPAt8LFHeqaVWTuZktNp5V2dwvOiFOpeXlJhtO16jdgC6+uMg426Qx9CAfSJ49eyRLxcNsBYqtHzufVDTcH6S4LAYpo1EqBfxx+Bv2PQ3qDVcc20smdqE0qt7Vk57Krumg29+5myitMSAtpJrlCDsYUVR7HCIA1sv68ByDf6qtLlb2+kGDFwC3PGjaGBaqV03K4O/XFWvFJd2jaCzshfPlGp3i6a8d1ZwiV1F3nBHPUyUlM0Cmv+4rZ0uIOu5Wdxbp3EBFsI1IE20JHnfldoYPKQTwu9jqMIH/0tV+O/JN7kEyisCzO6UDBfo3f/J78HG8fz9nrN4kkUYTccznM0n0yl+nsDX+ewymsLsYp5dFhMWrgGX1HMQq6Zp7ahogWRXi6SVP71mo6WGOty9XMNuyV8r1Rs/l4VaZxpR3jcRzsWipiT0RuRXOacy12gtl2H12FvKhMq2mKfnQGlo7NXeaki7KCmr+YuyHklZEt6wlHn4fKtWGl847nzyU7AjO/4DUEsDBBQAAAgIAAA4IezLb72VbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSoXGyQaqBqZF5qrmlsalpqq5xopmluYWBaaK5iWWyRZqxUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAA4IeyQe+YSmAIAAJ0FAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAA4IezLb72VbQAAAHgAAAAJACQAAAAAAAAAAAAAAOUCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAnQMAAAAA
+    dataString: UEsDBBQAAAgIAAA4IezWvOkwlgIAAJ8FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVNtu2zAM/ZVAz9tg57I0e9ucNt2AtkGzoQ9LH1ibjoXIkqFLk7TIv4+SndhxBxiwcHhIHl6kd8alqTC1Si80z+5UhuzbgPkz+zRojbe4h42SK/6GJ84Tz2zhSRA4j2C5Ijz2bkaVaDVPv8uN8OSIQCd5rnR5nW0wUcYagnMQBsmklfXekqD3Ads3Dofm/+b/gyOdUpQWdcuKe6w4sJxMBZQVZl5tSx5Hp6B0CkRJlTScoY+uhOCmkcHsoQplJlAZR0UQIeNAZQUBPnOBfFPYvvNDnhu0jSgNhznX1J06Kvuh6paVYLa1slcQLgiIxldBVB317gMhjoajQMi1Km9PqeNQlC14un2EQwrGdtraheeX2p3cgdjCi8CnAuW9WmjlZEZGq513dQaH806oc3lJgem25dVqe6CrPg4ybgd5DA3YJ4KXLx75Mq6BlVCh5TPvg5qG85MEh8UwTSRCvYg/Bn/DprtBjeGGa2PJ1CSUXt2LctpT2Q0dfPNTZxOlJQa0kVyhBGEPS4pi+0Ps2TpZe5Yb8Felyd3YTjeg5xLglh9FPdNS7dpZGfzlymqpuLQrBJ0WnXimULs7NMWDs4JL7FnuqYmJkrLeQPMfv5XTOaRdP4t76zTOwUK4CKSK1iTr+lIjg4t0QviNDHX46H+pDv89+zYXQIlFgNm9kuEKXfyf/SZsHM8uN53FozTCaDKc4nQ2mkzw8wi+zqZX0QSm41l6lY9YuAhcUtdBLOu2NcOiFZLtWCUt/ek9Gyw0VOH2ZRp2C/5Wqs4CcJmrVaoR5UMd4VwsakpCr0R2nXEqc4XWchmWj72vmVDpFrP1OdA6dPZ6bzWs2yhrVvFXZT2yZkl4xdbMw+d7tdT4ynHnk5+CHdnxH1BLAwQUAAAICAAAOCHsy2+9lW0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0kqFxskGqgamReaq5pbGpaaqucaKZpbmFgWmiuYllskWasVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAOCHs1rzpMJYCAACfBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAOCHsy2+9lW0AAAB4AAAACQAkAAAAAAAAAAAAAADjAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAJsDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1437,7 +1437,7 @@ Transform:
   m_GameObject: {fileID: 1493606211}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 1, z: 20}
+  m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 214711370}
@@ -1730,13 +1730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_speed: 10
   rotate_speed: 250
-  move_action_target: {fileID: 0}
-  current_action: {fileID: 0}
-  next_action: {fileID: 0}
-  target: {fileID: 0}
-  actionTest: {fileID: 11400000, guid: 117b1b8f7cb1d2b4ba0c6db3fa6dbed4, type: 2}
-  targetTest: {fileID: 1744154058}
-  test: 0
 --- !u!1 &1835965813
 GameObject:
   m_ObjectHideFlags: 0
