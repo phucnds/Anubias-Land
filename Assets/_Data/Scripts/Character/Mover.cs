@@ -49,7 +49,7 @@ public class Mover : MonoBehaviour
         animator.SetFloat("forwardSpeed", speed);
     }
 
-    private Vector3 GetLocalVelocity()
+    public Vector3 GetLocalVelocity()
     {
         Vector3 velocity = agent.velocity;
         Vector3 localVelocity = transform.InverseTransformDirection(velocity);
