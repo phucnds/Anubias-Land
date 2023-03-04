@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterOrder
 {
@@ -29,12 +30,12 @@ public class Character : MonoBehaviour
     private Vector3 moving;
     private Vector3 facing;
     private Vector3 move_target;
-    private Interactable move_action_target;
+    public Interactable move_action_target;
     private int action_target_pos;
     private bool move_action_auto = false;
 
-    private ActionBasic current_action = null;
-    private ActionBasic next_action = null;
+    public ActionBasic current_action = null;
+    public ActionBasic next_action = null;
     private Interactable action_target = null;
     private Vector3 last_target_pos;
     private float action_progress = 0f;
@@ -45,8 +46,12 @@ public class Character : MonoBehaviour
     private bool is_waiting = false;
     private bool is_dead = false;
     private float update_timer = 0f;
+    public bool is_Idle;
 
     private LinkedList<CharacterOrder> action_queue = new LinkedList<CharacterOrder>();
+
+    public static event UnityAction<Character> OnAnyCharacterSpawned;
+    public static event UnityAction<Character> OnAnyCharacterDeath;
 
     IAstarAI ai;
     private Animator animator;
@@ -55,6 +60,17 @@ public class Character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         move_target = transform.position;
+    }
+
+    private void Start()
+    {
+        ai.maxSpeed = move_speed;
+        OnAnyCharacterSpawned?.Invoke(this);
+    }
+
+    private void OnDestroy()
+    {
+        OnAnyCharacterDeath?.Invoke(this);
     }
 
     void OnEnable()
@@ -70,6 +86,9 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
+        is_Idle = IsIdle();
+
+
         UpdateAction();
         UpdateMove();
         UpdateCheckComplete();
@@ -116,11 +135,19 @@ public class Character : MonoBehaviour
 
         //Reached action Target
         if (HasSelectTarget() && HasReachedTarget())
+        {
+            Debug.Log("Reached action Target");
             InteractTarget(move_action_target, move_action_auto);
+        }
+
 
         //Reached move Target
         else if (!HasSelectTarget() && HasReachedTarget())
+        {
+            Debug.Log("Reached move Target");
             StopMove();
+        }
+            
 
         //Reached attack target
         // else if (IsAttackTargetInRange())
@@ -139,11 +166,11 @@ public class Character : MonoBehaviour
     {
         //Update move target
         if (move_action_target != null)
-            move_target = move_action_target.transform.position;
+            move_target = move_action_target.GetInteractPosition(action_target_pos);
 
         //Update target pos if its moving
         if (action_target != null)
-            last_target_pos = action_target.transform.position;
+            last_target_pos = action_target.GetInteractPosition(action_target_pos);
 
         //Update Pathfind
         ai.destination = move_target;
@@ -194,7 +221,7 @@ public class Character : MonoBehaviour
         {
             next_action = action;
 
-            if (target != null )//&& target != Selectable)
+            if (target != null)//&& target != Selectable)
                 MoveToTarget(target, auto); //Action has target, first move closer
             else
                 InteractTarget(target, auto); //Action has no target (ex: eat)
@@ -207,13 +234,16 @@ public class Character : MonoBehaviour
 
     public void MoveToTarget(Interactable target, bool auto = false)
     {
+        if (target.IsInteractFull())
+            return;
+
         is_moving = true;
         move_action_target = target;
         action_target = null;
         current_action = null;
         move_action_auto = auto;
-        action_target_pos = 1;
-        move_target = target.transform.position;
+        action_target_pos = target.GetInteractPositionIndex(this);
+        move_target = target.GetInteractPosition(action_target_pos);
         ai.destination = move_target;
     }
 
@@ -251,7 +281,7 @@ public class Character : MonoBehaviour
         moving = Vector3.zero;
     }
 
-    private bool HasReachedTarget()
+    public bool HasReachedTarget()
     {
         return ai.reachedDestination;
     }
@@ -324,6 +354,40 @@ public class Character : MonoBehaviour
         action_target = null;
         next_action = null;
         action_auto = false;
-        
+
+    }
+
+    public static List<Character> GetAllTargeting(Interactable select)
+    {
+        List<Character> targeting_list = new List<Character>();
+        foreach (Character character in GameMgr.Instance.CharacterManager.GetListCharacter())
+        {
+            if (character.GetTarget() == select)
+                targeting_list.Add(character);
+        }
+        return targeting_list;
+    }
+
+    private Interactable GetTarget()
+    {
+        if (current_action != null && action_target != null)
+            return action_target;
+        return move_action_target;
+    }
+
+    public int GetTargetPosIndex()
+    {
+        return action_target_pos;
+    }
+
+    public static int CountTargetingTarget(Interactable target)
+    {
+        int count = 0;
+        foreach (Character character in GameMgr.Instance.CharacterManager.GetListCharacter())
+        {
+            if (character.GetTarget() == target)
+                count++;
+        }
+        return count;
     }
 }
