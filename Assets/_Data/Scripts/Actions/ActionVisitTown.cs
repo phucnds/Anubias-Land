@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ActionVisitTown", menuName = "Anubias-Land/Actions", order = 0)]
+[CreateAssetMenu(fileName = "ActionVisitTown", menuName = "Anubias-Land/Actions/ActionVisitTown", order = 0)]
 public class ActionVisitTown : ActionBasic
 {
 
@@ -22,9 +22,12 @@ public class ActionVisitTown : ActionBasic
 
         if (character.HasReachedTarget())
         {
-            
-
-            
+            character.StopAction();
+            Gatherable next = Gatherable.GetNearestUnassigned(character.transform.position, 500);
+            if(next != null)
+            {
+                character.OrderNext(null, next.Interactable);
+            } 
         }
             
     }

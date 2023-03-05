@@ -53,7 +53,10 @@ public class Character : MonoBehaviour
     public static event UnityAction<Character> OnAnyCharacterSpawned;
     public static event UnityAction<Character> OnAnyCharacterDeath;
 
+    private CharacterAnim anim;
+
     public bool debug = false;
+    public int inventoryItem = 0;
 
     IAstarAI ai;
     private Animator animator;
@@ -62,6 +65,7 @@ public class Character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         move_target = transform.position;
+        anim = GetComponent<CharacterAnim>();
     }
 
     private void Start()
@@ -106,7 +110,7 @@ public class Character : MonoBehaviour
             SlowUpdate();
         }
 
-        UpdateAnimator();
+        //UpdateAnimator();
     }
 
     private void UpdateAction()
@@ -128,6 +132,7 @@ public class Character : MonoBehaviour
     private void UpdateMove()
     {
         if (move_action_target != null && ai != null) ai.destination = move_target;
+        moving = ai.velocity;
     }
 
     private void UpdateCheckComplete()
@@ -277,7 +282,7 @@ public class Character : MonoBehaviour
         return move_action_target != null;
     }
 
-    private void Stop()
+    public void Stop()
     {
         StopAction();
         StopMove();
@@ -450,4 +455,66 @@ public class Character : MonoBehaviour
     {
         return action_queue.Count;
     }
+
+    public void Animate(string anim_id, bool active)
+    {
+        anim?.Animate(anim_id, active);
+    }
+
+    public void FaceToward(Vector3 pos)
+    {
+        facing = pos - transform.position;
+        facing.y = 0f;
+        facing.Normalize();
+    }
+
+    public bool IsReallyMoving()
+    {
+        return is_moving && !is_waiting && GetLocalVelocity().z > 0.1f;
+    }
+
+    public void StopAnimate()
+    {
+        anim?.StopAnimate();
+    }
+
+
+    public float GetActionProgress()
+    {
+        return action_progress;
+    }
+
+    public void SetActionProgress(float value)
+    {
+        action_progress = value;
+    }
+
+    public void AddActionProgress(float value)
+    {
+        action_progress += value;
+    }
+
+    public void WaitFor(float duration, UnityAction callback = null)
+    {
+        if (!is_waiting)
+        {
+            StopMove();
+            is_waiting = true;
+            StartCoroutine(RunWaitRoutine(duration, callback));
+        }
+    }
+
+    private IEnumerator RunWaitRoutine(float action_duration, UnityAction callback = null)
+    {
+        is_waiting = true;
+
+        float mult = 1;
+        float duration = mult > 0.001f ? action_duration / mult : 0f;
+        yield return new WaitForSeconds(duration);
+
+        is_waiting = false;
+        if (callback != null)
+            callback.Invoke();
+    }
+
 }
