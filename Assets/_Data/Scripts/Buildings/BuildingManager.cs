@@ -9,6 +9,7 @@ public class BuildingManager : MonoBehaviour
 
     private Building TownHall;
 
+    private List<Inns> listInns = new List<Inns>();
 
     private void Awake()
     {
@@ -29,10 +30,14 @@ public class BuildingManager : MonoBehaviour
     private void Building_OnAnyBuildingCreated(Building building)
     {
         listBuilding.Add(building);
+
+        if(building is Inns)
+        {
+            listInns.Add((Inns)building);
+        }
+        
     }
-
-
-
+    
     public List<Building> GetBuildingList()
     {
         return listBuilding;
@@ -46,5 +51,10 @@ public class BuildingManager : MonoBehaviour
     public TownHall GetTownHall()
     {
         return TownHall is TownHall ? (TownHall)TownHall : null;
+    }
+
+    public List<Inns> GetListInns()
+    {
+        return listInns;
     }
 }

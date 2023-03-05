@@ -7,8 +7,8 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     [Header("Interaction")]
-    public float use_range = 5f;        //Distance from which characters can interact with this object
-    public int use_max = 8;           //Maximum number of characters who can interact with this object
+    public float use_range = 0f;        //Distance from which characters can interact with this object
+    public int use_max = 6;           //Maximum number of characters who can interact with this object
 
     [Header("Actions")]
     public ActionBasic[] actions;       //Default actions when interacting with this Interactable (right clicking on it)

@@ -18,7 +18,11 @@ public class ActionVisitTown : ActionBasic
         if (character.HasReachedTarget())
         {
             GameMgr.Instance.BuildingManager.GetTownHall().CharacterVisitTown(character);
+
+            Inns inns = GameMgr.Instance.BuildingManager.GetListInns()[0];
+            Interactable interact = inns.GetComponent<Interactable>();
             character.StopAction();
+            //character.OrderNext(null,interact);
         }
             
     }

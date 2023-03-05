@@ -201,22 +201,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void OrderInterupt(ActionBasic action, Interactable target, bool auto = false)
-    {
-        if (current_action != null)
-        {
-            CharacterOrder current = new CharacterOrder(current_action, action_target, move_target, action_auto);
-            action_queue.AddFirst(current);
-        }
-
-        Vector3 pos = target != null ? target.transform.position : transform.position;
-        CharacterOrder order = new CharacterOrder(action, target, pos, auto);
-        action_queue.AddFirst(order);
-
-        StopAction();
-        ExecuteNextOrder();
-    }
-
     private void ExecuteOrder(ActionBasic action, Interactable target, bool auto = false)
     {
         if (action != null && action.CanDoAction(this, target))
@@ -392,5 +376,78 @@ public class Character : MonoBehaviour
                 count++;
         }
         return count;
+    }
+
+    public void Order(ActionBasic action, Interactable target, bool auto = false)
+    {
+        CancelOrders();
+        ExecuteOrder(action, target, auto);
+    }
+
+    //Do action now, but resume previous order right after
+    public void OrderInterupt(ActionBasic action, Interactable target, bool auto = false)
+    {
+        if (current_action != null)
+        {
+            CharacterOrder current = new CharacterOrder(current_action, action_target, move_target, action_auto);
+            action_queue.AddFirst(current);
+        }
+
+        Vector3 pos = target != null ? target.transform.position : transform.position;
+        CharacterOrder order = new CharacterOrder(action, target, pos, auto);
+        action_queue.AddFirst(order);
+
+        StopAction();
+        ExecuteNextOrder();
+    }
+
+    //Do action after current one
+    public void OrderNext(ActionBasic action, Interactable target, bool auto = false)
+    {
+        Vector3 pos = target != null ? target.transform.position : transform.position;
+        CharacterOrder order = new CharacterOrder(action, target, pos, auto);
+        action_queue.AddLast(order);
+        if (IsIdle())
+        {
+            ExecuteNextOrder();
+        }
+    }
+
+    public void OrderMoveTo(Vector3 pos)
+    {
+        CancelOrders();
+        MoveTo(pos);
+    }
+
+    public void OrderMoveToNext(Vector3 pos)
+    {
+        CharacterOrder order = new CharacterOrder();
+        order.pos = pos;
+        action_queue.AddLast(order);
+    }
+
+    public void CancelOrders()
+    {
+        action_queue.Clear();
+        StopAction();
+    }
+
+    public void CancelAutoOrders()
+    {
+        if (action_queue.Count > 0)
+        {
+            for (LinkedListNode<CharacterOrder> node = action_queue.First; node != null; node = node.Next)
+            {
+                if (node.Value.automatic)
+                    action_queue.Remove(node);
+            }
+        }
+        if (action_auto)
+            StopAction();
+    }
+
+    public int CountQueuedOrders()
+    {
+        return action_queue.Count;
     }
 }
