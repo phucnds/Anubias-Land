@@ -53,6 +53,8 @@ public class Character : MonoBehaviour
     public static event UnityAction<Character> OnAnyCharacterSpawned;
     public static event UnityAction<Character> OnAnyCharacterDeath;
 
+    public bool debug = false;
+
     IAstarAI ai;
     private Animator animator;
 
@@ -328,6 +330,7 @@ public class Character : MonoBehaviour
             action_target = target;
             action_progress = 0f;
             current_action.StartAction(this, target);
+            if(debug) current_action.GettActionID();
             //onStartAction?.Invoke();
         }
     }

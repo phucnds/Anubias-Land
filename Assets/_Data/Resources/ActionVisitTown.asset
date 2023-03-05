@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e73e63e5ed8874caf22b0f3e897f51, type: 3}
   m_Name: ActionVisitTown
   m_EditorClassIdentifier: 
-  id: visit
+  id: visitTown

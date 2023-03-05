@@ -8,6 +8,11 @@ public abstract class ActionBasic : ScriptableObject {
 
     private static List<ActionBasic> list = new List<ActionBasic>();
 
+    public virtual void GettActionID()
+    {
+        Debug.Log("Action: " + id);
+    }
+
     public virtual void StartAction(Character character, Interactable target)
     {
         Debug.Log("StartAction");
