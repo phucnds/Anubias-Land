@@ -10,9 +10,7 @@ public class GameMgr : MonoBehaviour
     [SerializeField] private StorageManager storageManager;
 
     [Header("UICanvas")]
-    [SerializeField] private GameObject uiCanvasPrefab;
-
-    private UIManager uiCanvas;
+    [SerializeField] private UIManager uiCanvas;
 
     public static GameMgr Instance { get; private set; }
 
@@ -25,9 +23,6 @@ public class GameMgr : MonoBehaviour
     private void LoadData()
     {
         ActionBasic.Load();
-
-        if(uiCanvas == null) uiCanvas = Instantiate(uiCanvasPrefab,transform).GetComponent<UIManager>();
-
     }
 
     public BuildingManager BuildingManager { get { return buildingManager; } }

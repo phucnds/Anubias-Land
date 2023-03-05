@@ -11,12 +11,11 @@ public class ActionStore : ActionBasic
         if (storage != null)
         {
             character.FaceToward(target.transform.position);
-            character.WaitFor(0.2f, () =>
+            character.WaitFor(0.5f, () =>
             {
                 character.inventoryItem -= 10;
                 storage.inventoryItem += 10;
                 character.StopAnimate();
-                
                 character.Stop();
             });
         }

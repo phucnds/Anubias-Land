@@ -38,12 +38,6 @@ public class ActionVisitTown : ActionBasic
     }
 
 
-    private void CheckInnsHasSlot(Character character)
-    {
-        Inns inns = GameMgr.Instance.BuildingManager.GetListInns()[0];
-        Interactable interact = inns.GetComponent<Interactable>();
-        character.StopAction();
-        character.OrderNext(null,interact);
-    }
+    
 
 }

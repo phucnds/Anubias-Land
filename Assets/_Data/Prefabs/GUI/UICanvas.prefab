@@ -3893,7 +3893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea0ec7cd7a6dc44a870ea7c1ffb108f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  townHallUI: {fileID: 0}
+  townHallUI: {fileID: 2827532789989103641}
 --- !u!1 &2827532789712878026
 GameObject:
   m_ObjectHideFlags: 0

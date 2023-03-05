@@ -8,12 +8,23 @@ public class Building : MonoBehaviour
     public static event UnityAction<Building> OnAnyBuildingCreated;
     public static event UnityAction<Building> OnAnyBuildingDetroyed;
 
-    protected virtual void  Start() {
+    protected Interactable interact;
+
+    protected virtual void Awake()
+    {
+        interact = GetComponent<Interactable>();
+    }
+
+    protected virtual void Start()
+    {
         OnAnyBuildingCreated?.Invoke(this);
     }
 
-    protected virtual void OnDestroy() {
+    protected virtual void OnDestroy()
+    {
         OnAnyBuildingDetroyed?.Invoke(this);
     }
+
+    public Interactable Interactable { get { return interact; } }
 
 }

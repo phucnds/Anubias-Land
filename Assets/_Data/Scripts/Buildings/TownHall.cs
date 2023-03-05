@@ -10,11 +10,6 @@ public class TownHall : Building
 
     public static event UnityAction OnAnyCharacterStateChanged;
 
-    private void TownHallUI_OnAnyCharacterStateChanged()
-    {
-        throw new NotImplementedException();
-    }
-
     protected override void Start()
     {
         base.Start();

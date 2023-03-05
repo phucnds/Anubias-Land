@@ -136,6 +136,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3375486781891845489, guid: b09554137094d8d49aac939045db7499,
         type: 3}
+      propertyPath: use_max
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375486781891845489, guid: b09554137094d8d49aac939045db7499,
+        type: 3}
+      propertyPath: actions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375486781891845489, guid: b09554137094d8d49aac939045db7499,
+        type: 3}
+      propertyPath: actions.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c0fdd815b37a103499078ed2d6ba5767,
+        type: 2}
+    - target: {fileID: 3375486781891845489, guid: b09554137094d8d49aac939045db7499,
+        type: 3}
       propertyPath: interact_points.Array.data[0]
       value: 
       objectReference: {fileID: 130451157}

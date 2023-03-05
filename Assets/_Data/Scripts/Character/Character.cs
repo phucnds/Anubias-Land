@@ -55,8 +55,65 @@ public class Character : MonoBehaviour
 
     private CharacterAnim anim;
 
+    #region Debug
+
     public bool debug = false;
     public int inventoryItem = 0;
+    public float stamina = 100;
+    public float satiety = 100; 
+    public bool canRest = true;
+    public bool canBuyFood = true;
+    public GameObject model;
+
+    private void DebugStamina()
+    {
+        if(IsReallyMoving())
+        {
+            stamina -= Time.deltaTime;
+            satiety -= Time.deltaTime;
+        }
+
+        if(stamina <= 80 && canRest)
+        {
+            CheckInnsHasSlot();
+        }
+    }
+
+    private void DebugSatiety()
+    {
+        
+        satiety -= Time.deltaTime;
+
+        if (satiety <= 20 && canBuyFood)
+        {
+            GotoMarket();
+        }
+    }
+
+    private void GotoMarket()
+    {
+        Market market = GameMgr.Instance.BuildingManager.GetListMarkets()[0];
+        ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
+        if (market.Interactable.IsInteractFull()) return;
+        OrderInterupt(buyFood, market.Interactable);
+    }
+
+    private void CheckInnsHasSlot()
+    {
+        Inns inns = GameMgr.Instance.BuildingManager.GetListInns()[0];
+        ActionRest rest = ActionBasic.Get<ActionRest>();
+        if(inns.Interactable.IsInteractFull()) return;
+        OrderInterupt(rest, inns.Interactable);
+        
+    } 
+
+    public void ToggleModel(bool flag){
+        model.SetActive(flag);
+    }
+    #endregion
+
+
+
 
     IAstarAI ai;
     private Animator animator;
@@ -93,6 +150,9 @@ public class Character : MonoBehaviour
     private void Update()
     {
         is_Idle = IsIdle();
+        DebugStamina();
+        DebugSatiety();
+
 
 
         UpdateAction();
@@ -143,7 +203,7 @@ public class Character : MonoBehaviour
         //Reached action Target
         if (HasSelectTarget() && HasReachedTarget())
         {
-            Debug.Log("Reached action Target");
+            //Debug.Log("Reached action Target");
             InteractTarget(move_action_target, move_action_auto);
         }
 
@@ -151,7 +211,7 @@ public class Character : MonoBehaviour
         //Reached move Target
         else if (!HasSelectTarget() && HasReachedTarget())
         {
-            Debug.Log("Reached move Target");
+            //Debug.Log("Reached move Target");
             StopMove();
         }
             
@@ -249,13 +309,6 @@ public class Character : MonoBehaviour
         ai.destination = pos;
     }
 
-    private void UpdateAnimator()
-    {
-        Vector3 localVelocity = GetLocalVelocity();
-        float speed = localVelocity.z;
-        animator.SetFloat("forwardSpeed", speed);
-    }
-
     public Vector3 GetLocalVelocity()
     {
         Vector3 velocity = ai.velocity;
@@ -301,11 +354,16 @@ public class Character : MonoBehaviour
             target.Interact(this);
 
         if (next_action == null)
+        {
             next_action = GetPriorityAction(target);
+            //Debug.Log("GetPriorityAction");
+        }
+            
 
         if (next_action != null)
         {
             StartAction(next_action, target, auto);
+            //Debug.Log("StartAction: " + next_action);
         }
     }
 
