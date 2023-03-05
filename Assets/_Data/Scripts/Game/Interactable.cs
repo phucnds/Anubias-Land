@@ -14,6 +14,7 @@ public class Interactable : MonoBehaviour
     public ActionBasic[] actions;       //Default actions when interacting with this Interactable (right clicking on it)
 
     [Header("Interaction Point")]
+    public Transform interact_root;
     public Transform[] interact_points;
 
     public UnityAction<Character> onTarget;
@@ -23,6 +24,19 @@ public class Interactable : MonoBehaviour
 
     private void Awake() {
         transf = transform;
+        UpdateInteractPoints();
+    }
+
+    private void UpdateInteractPoints()
+    {
+        List<Transform> lst = new List<Transform>();
+        
+        foreach (Transform trans in interact_root)
+        {
+            lst.Add(trans);
+        }
+
+        interact_points = lst.ToArray();
     }
 
     public void Interact(Character character)

@@ -6,6 +6,11 @@ using UnityEngine;
 public class ActionVisitTown : ActionBasic
 {
 
+    public override void StartAction(Character character, Interactable target)
+    {
+        GameMgr.Instance.BuildingManager.GetTownHall().CharacterVisitTown(character);
+    }
+
     public override void UpdateAction(Character character, Interactable target)
     {
 
@@ -17,12 +22,9 @@ public class ActionVisitTown : ActionBasic
 
         if (character.HasReachedTarget())
         {
-            GameMgr.Instance.BuildingManager.GetTownHall().CharacterVisitTown(character);
+            
 
-            Inns inns = GameMgr.Instance.BuildingManager.GetListInns()[0];
-            Interactable interact = inns.GetComponent<Interactable>();
-            character.StopAction();
-            //character.OrderNext(null,interact);
+            
         }
             
     }
@@ -30,6 +32,15 @@ public class ActionVisitTown : ActionBasic
     public override bool CanDoAction(Character character, Interactable target)
     {
         return target != null;
+    }
+
+
+    private void CheckInnsHasSlot(Character character)
+    {
+        Inns inns = GameMgr.Instance.BuildingManager.GetListInns()[0];
+        Interactable interact = inns.GetComponent<Interactable>();
+        character.StopAction();
+        character.OrderNext(null,interact);
     }
 
 }

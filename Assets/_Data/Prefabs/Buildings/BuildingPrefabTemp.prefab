@@ -125,5 +125,6 @@ MonoBehaviour:
   use_range: 0
   use_max: 6
   actions: []
+  interact_root: {fileID: 3375486781737116832}
   interact_points:
   - {fileID: 0}
