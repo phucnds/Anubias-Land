@@ -60,20 +60,20 @@ public class Character : MonoBehaviour
     public bool debug = false;
     public int inventoryItem = 0;
     public float stamina = 100;
-    public float satiety = 100; 
+    public float satiety = 100;
     public bool canRest = true;
     public bool canBuyFood = true;
     public GameObject model;
 
     private void DebugStamina()
     {
-        if(IsReallyMoving())
+        if (IsReallyMoving())
         {
-            stamina -= Time.deltaTime;
-            satiety -= Time.deltaTime;
+            stamina -= 0.1f * Time.deltaTime;
+            satiety -= 0.1f * Time.deltaTime;
         }
 
-        if(stamina <= 80 && canRest)
+        if (stamina <= 80 && canRest)
         {
             CheckInnsHasSlot();
         }
@@ -81,8 +81,8 @@ public class Character : MonoBehaviour
 
     private void DebugSatiety()
     {
-        
-        satiety -= Time.deltaTime;
+
+        satiety -= 0.1f * Time.deltaTime;
 
         if (satiety <= 20 && canBuyFood)
         {
@@ -102,12 +102,14 @@ public class Character : MonoBehaviour
     {
         Inns inns = GameMgr.Instance.BuildingManager.GetListInns()[0];
         ActionRest rest = ActionBasic.Get<ActionRest>();
-        if(inns.Interactable.IsInteractFull()) return;
-        OrderInterupt(rest, inns.Interactable);
-        
-    } 
+        if (!inns.Interactable.IsInteractFull() && satiety > 20)
+        {
+            OrderInterupt(rest, inns.Interactable);
+        }
+    }
 
-    public void ToggleModel(bool flag){
+    public void ToggleModel(bool flag)
+    {
         model.SetActive(flag);
     }
     #endregion
@@ -216,7 +218,7 @@ public class Character : MonoBehaviour
             //Debug.Log("Reached move Target");
             StopMove();
         }
-            
+
 
         //Reached attack target
         // else if (IsAttackTargetInRange())
@@ -360,7 +362,7 @@ public class Character : MonoBehaviour
             next_action = GetPriorityAction(target);
             //Debug.Log("GetPriorityAction");
         }
-            
+
 
         if (next_action != null)
         {
@@ -379,7 +381,7 @@ public class Character : MonoBehaviour
             action_target = target;
             action_progress = 0f;
             current_action.StartAction(this, target);
-            if(debug) current_action.GettActionID();
+            if (debug) current_action.GettActionID();
             //onStartAction?.Invoke();
         }
     }
