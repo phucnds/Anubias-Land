@@ -14,7 +14,7 @@ public class GameMgr : MonoBehaviour
 
     public static GameMgr Instance { get; private set; }
 
-    private float speed_multiplier = 1f;
+    [SerializeField] private float speed_multiplier = 1f;
 
     private void Awake()
     {
