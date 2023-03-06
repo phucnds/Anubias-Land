@@ -35,8 +35,8 @@ public class CharacterAnim : MonoBehaviour
 
     void Update()
     {
-        bool is_paused = false;
-        float mult = 1;
+        bool is_paused = GameMgr.Instance.GetSpeedMultiplier() <= 0;
+        float mult = GameMgr.Instance.GetSpeedMultiplier();
 
         if (animator != null)
         {

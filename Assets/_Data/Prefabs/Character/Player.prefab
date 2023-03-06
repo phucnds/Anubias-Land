@@ -1817,8 +1817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed44410415e6fb4798668052f71fd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_speed: 10
-  rotate_speed: 250
+  move_speed: 2
+  rotate_speed: 100
   move_action_target: {fileID: 0}
   current_action: {fileID: 0}
   next_action: {fileID: 0}
@@ -1826,6 +1826,9 @@ MonoBehaviour:
   debug: 1
   inventoryItem: 0
   stamina: 100
+  satiety: 100
+  canRest: 1
+  canBuyFood: 1
   model: {fileID: 2468534982833737239}
 --- !u!114 &8025106092371397530
 MonoBehaviour:

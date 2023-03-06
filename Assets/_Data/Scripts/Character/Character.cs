@@ -127,7 +127,6 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        ai.maxSpeed = move_speed;
         OnAnyCharacterSpawned?.Invoke(this);
     }
 
@@ -191,6 +190,9 @@ public class Character : MonoBehaviour
 
     private void UpdateMove()
     {
+        float mult = GameMgr.Instance.GetSpeedMultiplier();
+        ai.maxSpeed = move_speed * mult;
+        GetComponent<AILerp>().rotationSpeed = rotate_speed * mult;
         if (move_action_target != null && ai != null) ai.destination = move_target;
         moving = ai.velocity;
     }
@@ -566,7 +568,7 @@ public class Character : MonoBehaviour
     {
         is_waiting = true;
 
-        float mult = 1;
+        float mult = GameMgr.Instance.GetSpeedMultiplier();
         float duration = mult > 0.001f ? action_duration / mult : 0f;
         yield return new WaitForSeconds(duration);
 

@@ -14,6 +14,8 @@ public class GameMgr : MonoBehaviour
 
     public static GameMgr Instance { get; private set; }
 
+    private float speed_multiplier = 1f;
+
     private void Awake()
     {
         Instance = this;
@@ -23,6 +25,18 @@ public class GameMgr : MonoBehaviour
     private void LoadData()
     {
         ActionBasic.Load();
+    }
+
+    public float GetSpeedMultiplier()
+    {
+        return speed_multiplier;
+    }
+
+    public void SetGameSpeedMultiplier(float mult)
+    {
+        if (mult > 10) mult = 10;
+        if (mult < 0) mult = 0;
+        speed_multiplier = mult;
     }
 
     public BuildingManager BuildingManager { get { return buildingManager; } }
