@@ -20,10 +20,6 @@ public class Gatherable : MonoBehaviour
     public string harvest_anim;
     public AudioClip harvest_audio;
 
-    //public int numberTreeReadyToChop = 6;
-    //public bool isRegen = false;
-    //private float timerRegen = 5;
-
     protected Interactable interact;
 
     private void Awake()
@@ -35,25 +31,6 @@ public class Gatherable : MonoBehaviour
     {
         OnAnyGatherableCreated?.Invoke(this);
     }
-
-    //private void Update()
-    //{
-    //    if (numberTreeReadyToChop < 6) isRegen = true;
-    //    if (!isRegen) return;
-
-    //    timerRegen -= Time.deltaTime;
-
-    //    if (timerRegen <= 0)
-    //    {
-    //        numberTreeReadyToChop++;
-    //        if (numberTreeReadyToChop == 6)
-    //        {
-    //            isRegen = false;
-                
-    //        }
-    //        timerRegen = 5;
-    //    }
-    //}
 
     private void OnDestroy()
     {
