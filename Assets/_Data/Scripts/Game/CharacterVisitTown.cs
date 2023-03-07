@@ -21,7 +21,7 @@ public class CharacterVisitTown : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(2f);
             GameObject characterGameObject = Instantiate(characterPrefabs, transform.position, Quaternion.identity, transform);
             Character character = characterGameObject.GetComponent<Character>();
 
