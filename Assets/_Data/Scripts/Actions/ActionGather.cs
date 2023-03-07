@@ -39,6 +39,7 @@ public class ActionGather : ActionBasic
             character.SetActionProgress(0f);
             character.inventoryItem++;
             gather.value--;
+            //gather.numberTreeReadyToChop--;
         }
 
         if (gather.value<= 0 || character.inventoryItem == 10)
@@ -69,4 +70,12 @@ public class ActionGather : ActionBasic
         }
         return false;
     }
+
+    //public override bool CanDoAction(Character character, Interactable target)
+    //{
+    //    Gatherable gather = target.GetComponent<Gatherable>();
+    //    if (gather == null) return false;
+
+    //    return gather.numberTreeReadyToChop > 0;
+    //}
 }
