@@ -38,6 +38,11 @@ public abstract class ActionBasic : ScriptableObject {
         return true; 
     }
 
+    public virtual bool OnReadyAction(Character character, Interactable target)
+    {
+        return true;
+    }
+
     public static void Load(string folder = "")
     {
         list.Clear();
