@@ -8,6 +8,7 @@ public class GameMgr : MonoBehaviour
     [SerializeField] private CharacterManager characterManager;
     [SerializeField] private GatherableManager gatherableManager;
     [SerializeField] private StorageManager storageManager;
+    [SerializeField] private CivilianManager civilianManager;
 
     [Header("UICanvas")]
     [SerializeField] private UIManager uiCanvas;
@@ -39,10 +40,16 @@ public class GameMgr : MonoBehaviour
         speed_multiplier = mult;
     }
 
+    public bool IsPaused()
+    {
+        return speed_multiplier < 0.001f;
+    }
+
     public BuildingManager BuildingManager { get { return buildingManager; } }
     public CharacterManager CharacterManager { get { return characterManager; } }
     public GatherableManager GatherableManager { get { return gatherableManager; } }
     public StorageManager StorageManager { get { return storageManager; } }
+    public CivilianManager CivilianManager { get { return civilianManager; } }
 
     public UIManager UICanvas { get { return uiCanvas; } }
 }

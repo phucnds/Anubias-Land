@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,11 @@ public class Gatherable : MonoBehaviour
         OnAnyGatherableDestroyed?.Invoke(this);
     }
 
+    private int GetValue()
+    {
+        return value;
+    }
+
     public Interactable Interactable { get { return interact; } }
 
 
@@ -70,5 +76,17 @@ public class Gatherable : MonoBehaviour
             }
         }
         return nearest;
+    }
+
+    public bool CanHarvest()
+    {
+        //bool valid = construction == null || construction.IsCompleted();
+        return harvestable && GetValue() > 0;
+    }
+   
+    public bool CanHarvest(Character character)
+    {
+        bool tool = !tool_required; //|| character.Equip.HasEquip(harvest_tool);
+        return tool && CanHarvest();
     }
 }
