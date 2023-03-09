@@ -21,11 +21,11 @@ public class Interactable : MonoBehaviour
     public UnityAction<Character> onInteract;
 
     private Transform transf;
-    private Workable workable;
+    private Task task;
 
     private void Awake() {
 
-        workable = GetComponent<Workable>();
+        task = GetComponent<Task>();
 
         transf = transform;
         UpdateInteractPoints();
@@ -118,6 +118,6 @@ public class Interactable : MonoBehaviour
         return nb >= use_max;
     }
 
-    public Workable Workable { get { return workable; } }
+    public Task Task { get { return task; } }
     public Transform Transform { get { return transf; } }
 }

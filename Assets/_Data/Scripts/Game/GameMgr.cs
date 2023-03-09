@@ -9,6 +9,7 @@ public class GameMgr : MonoBehaviour
     [SerializeField] private GatherableManager gatherableManager;
     [SerializeField] private StorageManager storageManager;
     [SerializeField] private CivilianManager civilianManager;
+    [SerializeField] private TaskManager taskManager;
 
     [Header("UICanvas")]
     [SerializeField] private UIManager uiCanvas;
@@ -51,6 +52,7 @@ public class GameMgr : MonoBehaviour
     public GatherableManager GatherableManager { get { return gatherableManager; } }
     public StorageManager StorageManager { get { return storageManager; } }
     public CivilianManager CivilianManager { get { return civilianManager; } }
+    public TaskManager TaskManager { get { return taskManager; } }
 
     public UIManager UICanvas { get { return uiCanvas; } }
 }

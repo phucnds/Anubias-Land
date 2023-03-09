@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CivilianManager : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class CivilianManager : MonoBehaviour
             Interactable target = work.FindBestTarget(base_pos);
             if (target != null)
             {
-                if (target.Workable == null || !target.Workable.IsFullyAssigned())
+                if (target.Task == null || !target.Task.IsFullyAssigned())
                 {
                     //Find the best civilian for the work
                     Civilian civilian = FindBestCivilian(work, target);
@@ -73,7 +74,7 @@ public class CivilianManager : MonoBehaviour
                 //Stop work
                 if (civilian.IsIdle() && !civilian.CanDoWork(current_work, work_target))// || civilian.Attributes.IsAnyDepleted())
                     civilian.StopWork();
-                if (work_target != null && work_target.Workable != null && work_target.Workable.IsOverAssigned())
+                if (work_target != null && work_target.Task != null && work_target.Task.IsOverAssigned())
                     civilian.StopWork();
             }
         }
@@ -146,11 +147,15 @@ public class CivilianManager : MonoBehaviour
     private void OnStartWork(Civilian civilian, WorkBasic work)
     {
         AssignCivilian(civilian, civilian.GetWorkTarget());
+        if (civilian.GetWorkTarget() == null) return;
+        civilian.GetWorkTarget().Task.OnChangedWorkers();
     }
 
     private void OnStopWork(Civilian civilian)
     {
         UnassignCivilian(civilian);
+        if (civilian.GetWorkTarget() == null) return;
+        civilian.GetWorkTarget().Task.OnChangedWorkers();
     }
 
     private void AssignCivilian(Civilian civilian, Interactable select)
@@ -163,7 +168,9 @@ public class CivilianManager : MonoBehaviour
             if (!assigned_civilians.ContainsKey(select))
                 assigned_civilians[select] = new HashSet<Civilian>();
             assigned_civilians[select].Add(civilian);
+            
         }
+        
     }
 
     private void UnassignCivilian(Civilian civilian)
@@ -178,6 +185,7 @@ public class CivilianManager : MonoBehaviour
                     pair.Value.Remove(civilian);
             }
         }
+
     }
 
 
