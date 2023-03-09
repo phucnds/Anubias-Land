@@ -23,14 +23,6 @@ public class ActionVisitTown : ActionBasic
         if (character.HasReachedTarget())
         {
             character.StopAction();
-            character.WaitFor(1, () =>
-            {
-                Gatherable next = Gatherable.GetNearestUnassigned(character.transform.position, 500);
-                if (next != null)
-                {
-                    character.OrderNext(null, next.Interactable);
-                }
-            });
         }
             
     }

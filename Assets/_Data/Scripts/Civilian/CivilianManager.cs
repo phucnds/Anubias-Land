@@ -21,8 +21,6 @@ public class CivilianManager : MonoBehaviour
 
     void Update()
     {
-        
-
         update_timer += Time.deltaTime;
         if (update_timer > 0.5f)
         {
@@ -33,7 +31,96 @@ public class CivilianManager : MonoBehaviour
 
     private void SlowUpdate()
     {
-        Debug.Log("CivilianManager");
+        //Start new work
+        StartNewWork();
+
+        //Stop work
+        StopWork();
+
+    }
+
+    private void StartNewWork()
+    {
+        Vector3 base_pos = GameMgr.Instance.BuildingManager.GetTownHall().transform.position;
+
+        foreach (WorkBasic work in WorkBasic.GetAll())
+        {
+            //Check if work has target
+            Interactable target = work.FindBestTarget(base_pos);
+            if (target != null)
+            {
+                if (target.Workable == null || !target.Workable.IsFullyAssigned())
+                {
+                    //Find the best civilian for the work
+                    Civilian civilian = FindBestCivilian(work, target);
+                    if (civilian != null)
+                    {
+                        StartWork(civilian, work, target);
+                    }
+                }
+            }
+        }
+    }
+
+    private void StopWork()
+    {
+        foreach (Civilian civilian in listCivilian)
+        {
+            WorkBasic current_work = civilian.GetWork();
+            Interactable work_target = civilian.GetWorkTarget();
+            if (current_work != null)
+            {
+                //Stop work
+                if (civilian.IsIdle() && !civilian.CanDoWork(current_work, work_target))// || civilian.Attributes.IsAnyDepleted())
+                    civilian.StopWork();
+                if (work_target != null && work_target.Workable != null && work_target.Workable.IsOverAssigned())
+                    civilian.StopWork();
+            }
+        }
+    }
+
+    public void StartWork(Civilian civilian, WorkBasic work, Interactable target)
+    {
+        //Start working on a task
+        if (civilian != null && work != null && target != null)
+        {
+            Debug.Log("can do work");
+            civilian.StartWork(work, target);
+        }
+    }
+
+    public Civilian FindBestCivilian(WorkBasic work, Interactable target)
+    {
+        Civilian best = null;
+        float min_dist = work.range;
+        foreach (Civilian civilian in listCivilian)
+        {
+            if (civilian.IsAuto() || civilian.IsIdle())
+            {
+                if (!civilian.IsWorking() || work.priority > civilian.GetWork().priority)
+                {
+                    Debug.Log("isn't working");
+                    float dist = (civilian.transform.position - target.Transform.position).magnitude;
+                    if (dist < work.range && civilian.CanDoWork(work, target))
+                    {
+                        bool best_idle = best != null && best.IsIdle();
+                        bool is_idle_better = civilian.IsIdle() || !best_idle; //Idle colonists priority over working ones
+                        bool is_better = is_idle_better && dist < min_dist;
+
+                        Debug.Log("in range");
+
+                        if (is_better)
+                        {
+
+                            Debug.Log("has best");
+                            min_dist = dist;
+                            best = civilian;
+                        }
+                    }
+                }
+            }
+        }
+        return best;
     }
 
     public void RegisterColonist(Civilian civilian)
@@ -94,6 +181,25 @@ public class CivilianManager : MonoBehaviour
     }
 
 
+    public List<Civilian> GetWorkingOn(Interactable target)
+    {
+        if (assigned_civilians.ContainsKey(target))
+        {
+            List<Civilian> civilians = new List<Civilian>(assigned_civilians[target]);
+            return civilians;
+        }
+        return new List<Civilian>();
+    }
+
+    public int CountWorkingOn(Interactable target)
+    {
+        if (assigned_civilians.ContainsKey(target))
+        {
+            HashSet<Civilian> civilians = assigned_civilians[target];
+            return civilians.Count;
+        }
+        return 0;
+    }
 
     private void Civilian_OnAnyCivilianrSpawned(Civilian civilian)
     {

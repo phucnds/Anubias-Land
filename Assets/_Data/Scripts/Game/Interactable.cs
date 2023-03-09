@@ -21,8 +21,12 @@ public class Interactable : MonoBehaviour
     public UnityAction<Character> onInteract;
 
     private Transform transf;
+    private Workable workable;
 
     private void Awake() {
+
+        workable = GetComponent<Workable>();
+
         transf = transform;
         UpdateInteractPoints();
     }
@@ -113,4 +117,7 @@ public class Interactable : MonoBehaviour
         int nb = Character.CountTargetingTarget(this);
         return nb >= use_max;
     }
+
+    public Workable Workable { get { return workable; } }
+    public Transform Transform { get { return transf; } }
 }

@@ -13,8 +13,14 @@ public class WorkHarvest : WorkBasic
     {
         Interactable target = civilian.GetWorkTarget();
         Gatherable gather = target.GetComponent<Gatherable>();
+
         if (gather != null)
+        {
+            Debug.Log("AutoOrder");
+            Debug.Log(gather.Interactable);
             civilian.AutoOrder(action_gather, gather.Interactable);
+        }
+            
     }
 
     public override void StopWork(Civilian civilian)
@@ -24,13 +30,13 @@ public class WorkHarvest : WorkBasic
 
     public override bool CanDoWork(Civilian civilian, Interactable target)
     {
-        if (target != null)
-        {
-            Gatherable gather = target.GetComponent<Gatherable>();
-            bool agather = gather != null && gather.CanHarvest(civilian.Character);
-            return agather;
-        }
-        return false;
+        //if (target != null)
+        //{
+        //    Gatherable gather = target.GetComponent<Gatherable>();
+        //    bool agather = gather != null && gather.CanHarvest(civilian.Character);
+        //    return agather;
+        //}
+        return true;
     }
 
     public override Interactable FindBestTarget(Vector3 pos)
