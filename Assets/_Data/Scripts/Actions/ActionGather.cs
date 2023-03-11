@@ -65,32 +65,39 @@ public class ActionGather : ActionBasic
         character.StopAnimate();
 
 
+
+        // if (market != null && character.stamina < 50)
+        // {
+        //     //Return to storage
+        //     ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
+        //     character.OrderInterupt(buyFood, market.Interactable);
+
+        //     //Find next resource to harvest
+        //     Gatherable next = Gatherable.GetNearest(character.transform.position, next_dist);
+        //     if (next != null && character.CountQueuedOrders() <= 2)
+        //         character.OrderNext(this, next.Interactable, true);
+
+        //     return true;
+        // }
+
         Market market = Market.GetNearestUnassigned(character.transform.position);
-        if (market != null && character.stamina < 50)
-        {
-            //Return to storage
-            ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
-            character.OrderInterupt(buyFood, market.Interactable);
-
-            //Find next resource to harvest
-            Gatherable next = Gatherable.GetNearest(character.transform.position, next_dist);
-            if (next != null && character.CountQueuedOrders() <= 2)
-                character.OrderNext(this, next.Interactable, true);
-
-            return true;
-        }
-
-
         Storage storage = Storage.GetNearestActive(character.transform.position, storage_dist);
-        if (storage != null)
+        if (storage != null && market != null)
         {
             //Return to storage
             ActionStore store = ActionBasic.Get<ActionStore>();
             character.OrderInterupt(store, storage.Interactable);
+
+            if(character.stamina <= 80)
+            {
+                
+                ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
+                character.OrderInterupt(buyFood, market.Interactable);
+            }
      
             //Find next resource to harvest
             Gatherable next = Gatherable.GetNearest(character.transform.position, next_dist);
-            if (next != null && character.CountQueuedOrders() <= 2)
+            if (next != null  && character.CountQueuedOrders() <= 2)
                 character.OrderNext(this, next.Interactable, true);
 
             return true;

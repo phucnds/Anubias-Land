@@ -25,7 +25,7 @@ public class CharacterVisitTown : MonoBehaviour
             GameObject characterGameObject = Instantiate(characterPrefabs, transform.position, Quaternion.identity, transform);
             Character character = characterGameObject.GetComponent<Character>();
 
-            VisitTown(character);
+            //VisitTown(character);
         }
     }
 
