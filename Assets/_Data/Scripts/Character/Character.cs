@@ -65,49 +65,6 @@ public class Character : MonoBehaviour
     public bool canBuyFood = true;
     public GameObject model;
 
-    private void DebugStamina()
-    {
-        if (IsReallyMoving())
-        {
-            stamina -= 0.1f * Time.deltaTime;
-            satiety -= 0.1f * Time.deltaTime;
-        }
-
-        if (stamina <= 80 && canRest)
-        {
-            CheckInnsHasSlot();
-        }
-    }
-
-    private void DebugSatiety()
-    {
-
-        satiety -= 0.1f * Time.deltaTime;
-
-        if (satiety <= 20 && canBuyFood)
-        {
-            GotoMarket();
-        }
-    }
-
-    private void GotoMarket()
-    {
-        Market market = GameMgr.Instance.BuildingManager.GetListMarkets()[0];
-        ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
-        if (market.Interactable.IsInteractFull()) return;
-        OrderInterupt(buyFood, market.Interactable);
-    }
-
-    private void CheckInnsHasSlot()
-    {
-        Inns inns = GameMgr.Instance.BuildingManager.GetListInns()[0];
-        ActionRest rest = ActionBasic.Get<ActionRest>();
-        if (!inns.Interactable.IsInteractFull() && satiety > 20)
-        {
-            OrderInterupt(rest, inns.Interactable);
-        }
-    }
-
     public void ToggleModel(bool flag)
     {
         model.SetActive(flag);
@@ -151,9 +108,7 @@ public class Character : MonoBehaviour
     private void Update()
     {
         is_Idle = IsIdle();
-        DebugStamina();
-        DebugSatiety();
-
+        stamina -= Time.deltaTime;
 
 
         UpdateAction();
@@ -171,7 +126,6 @@ public class Character : MonoBehaviour
             SlowUpdate();
         }
 
-        //UpdateAnimator();
     }
 
     private void UpdateAction()
@@ -463,7 +417,7 @@ public class Character : MonoBehaviour
         Vector3 pos = target != null ? target.transform.position : transform.position;
         CharacterOrder order = new CharacterOrder(action, target, pos, auto);
         action_queue.AddFirst(order);
-
+        
         StopAction();
         ExecuteNextOrder();
     }

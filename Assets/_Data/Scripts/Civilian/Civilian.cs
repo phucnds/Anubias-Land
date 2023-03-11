@@ -11,14 +11,16 @@ public class Civilian : MonoBehaviour
     public static event UnityAction<Civilian> OnAnyCivilianDeath;
 
     private Character character;
-    private WorkBasic current_work = null;
+    public WorkBasic current_work = null;
     private Interactable work_target = null;
 
-    private bool manual_order = false;
+    public bool manual_order = false;
     private float update_timer;
 
     public UnityAction<Civilian, WorkBasic> onStartWork;
     public UnityAction<Civilian> onStopWork;
+
+    public float Stamina = 100;
 
     private void Awake()
     {
@@ -50,9 +52,21 @@ public class Civilian : MonoBehaviour
         //     return;
 
         //Current Work
+        Stamina -= Time.deltaTime;
+
         current_work?.UpdateWork(this);
 
 
+    }
+
+    public bool IsAnyDepleted()
+    {
+        if (Stamina <= 50)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public bool CanDoWork(WorkBasic work, Interactable target)

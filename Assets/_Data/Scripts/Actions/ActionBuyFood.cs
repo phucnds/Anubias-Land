@@ -12,7 +12,7 @@ public class ActionBuyFood : ActionBasic
         character.FaceToward(target.transform.position);
         character.WaitFor(2f, () =>
         {      
-            character.satiety = 100;
+            character.stamina = 100;
             character.canBuyFood = true;
             character.Stop();
         });

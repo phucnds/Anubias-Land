@@ -32,7 +32,7 @@ public class CharacterVisitTown : MonoBehaviour
 
     private void VisitTown(Character character)
     {
-        Interactable interact = TownHall.GetComponent<Interactable>();
+        Interactable interact = Gatherable.GetNearestUnassigned(Vector3.zero).Interactable;
         character.OrderInterupt(null,interact);
     }
 

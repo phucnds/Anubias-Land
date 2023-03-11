@@ -24,9 +24,11 @@ public class ActionGather : ActionBasic
         character.StopAnimate();
         //character.HideTools();
 
-        // Gatherable gather = target != null ? target.GetComponent<Gatherable>() : null;
-        // if (gather != null && gather.GetValue() <= 0 && character.CountQueuedOrders() == 0)
-        //     FindReturnTarget(character, gather);
+        
+
+        Gatherable gather = target != null ? target.GetComponent<Gatherable>() : null;
+        if (gather != null && gather.GetValue() <= 0 && character.CountQueuedOrders() == 0)
+            FindReturnTarget(character, gather);
     }
 
     public override void UpdateAction(Character character, Interactable target)
@@ -50,15 +52,25 @@ public class ActionGather : ActionBasic
         
     }
 
+    private void Regen(Character character)
+    {
+        Debug.Log("Regen");
+        Market market = Market.GetNearestUnassigned(character.transform.position);
+        ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
+        character.OrderNext(this, market.Interactable, true);
+    }
+
     private bool FindReturnTarget(Character character, Gatherable gather)
     {
         character.StopAnimate();
-        Storage storage = Storage.GetNearestActive(character.transform.position, storage_dist);
-        if (storage != null)
+
+
+        Market market = Market.GetNearestUnassigned(character.transform.position);
+        if (market != null && character.stamina < 50)
         {
             //Return to storage
-            ActionStore store = ActionBasic.Get<ActionStore>();
-            character.OrderInterupt(store, storage.Interactable);
+            ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
+            character.OrderInterupt(buyFood, market.Interactable);
 
             //Find next resource to harvest
             Gatherable next = Gatherable.GetNearest(character.transform.position, next_dist);
@@ -66,6 +78,24 @@ public class ActionGather : ActionBasic
                 character.OrderNext(this, next.Interactable, true);
 
             return true;
+        }
+
+
+        Storage storage = Storage.GetNearestActive(character.transform.position, storage_dist);
+        if (storage != null)
+        {
+            //Return to storage
+            ActionStore store = ActionBasic.Get<ActionStore>();
+            character.OrderInterupt(store, storage.Interactable);
+     
+            //Find next resource to harvest
+            Gatherable next = Gatherable.GetNearest(character.transform.position, next_dist);
+            if (next != null && character.CountQueuedOrders() <= 2)
+                character.OrderNext(this, next.Interactable, true);
+
+            return true;
+            
+           
         }
         return false;
     }

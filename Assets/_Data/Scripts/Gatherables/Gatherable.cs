@@ -38,7 +38,7 @@ public class Gatherable : MonoBehaviour
         OnAnyGatherableDestroyed?.Invoke(this);
     }
 
-    private int GetValue()
+    public int GetValue()
     {
         return value;
     }
