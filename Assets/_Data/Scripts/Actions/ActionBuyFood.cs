@@ -19,7 +19,11 @@ public class ActionBuyFood : ActionBasic
         
     }
 
-    
+
+    public override bool CanDoAction(Character character, Interactable target)
+    {
+        return target != null;
+    }    
 
     
 }

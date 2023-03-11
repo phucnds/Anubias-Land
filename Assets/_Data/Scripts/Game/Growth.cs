@@ -14,7 +14,6 @@ public class Growth : MonoBehaviour
 
 
     [SerializeField] private Transform stages;
-
     [SerializeField] private float timerValue;
 
     private bool grown = false;

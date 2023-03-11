@@ -271,6 +271,17 @@ public class Character : MonoBehaviour
         ai.destination = pos;
     }
 
+    public void Move(Vector3 pos)
+    {
+        is_moving = true;
+        move_target = pos;
+        move_action_target = null;
+        action_target = null;
+        //current_action = null;
+        move_action_auto = false;
+        ai.destination = pos;
+    }
+
     public Vector3 GetLocalVelocity()
     {
         Vector3 velocity = ai.velocity;

@@ -15,7 +15,7 @@ public class ActionGather : ActionBasic
         if (gather != null)
         {
             character.Animate(gather.harvest_anim, true);
-            character.FaceToward(target.transform.position);
+            character.transform.LookAt(target.transform.position);
         }
     }
 
@@ -90,5 +90,10 @@ public class ActionGather : ActionBasic
            
         }
         return false;
+    }
+
+    public override bool CanDoAction(Character character, Interactable target)
+    {
+        return target != null;
     }
 }

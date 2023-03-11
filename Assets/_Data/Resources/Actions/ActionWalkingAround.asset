@@ -9,16 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b050a44d96d17b64786394da0a9516a6, type: 3}
-  m_Name: Stamina
+  m_Script: {fileID: 11500000, guid: a0b2b621bd36b6f4788278bf0b106d93, type: 3}
+  m_Name: ActionWalkingAround
   m_EditorClassIdentifier: 
-  type: 2
-  title: Stamina
-  start_value: 100
-  max_value: 100
-  value_per_hour: -1
-  low_status: weak
-  low_threshold: 50
-  deplete_hp_loss: -100
-  deplete_move_mult: 1
-  deplete_gather_mult: 1
+  id: walking
+  wander_min: 4
+  wander_range: 15
+  wander_interval: 10

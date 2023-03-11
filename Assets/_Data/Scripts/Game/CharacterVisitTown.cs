@@ -10,7 +10,8 @@ public class CharacterVisitTown : MonoBehaviour
 
     private Building TownHall;
 
-    private void Start() {
+    private void Start()
+    {
         StartCoroutine(Spawn());
 
         TownHall = GameMgr.Instance.BuildingManager.GetTownHall();
@@ -32,8 +33,8 @@ public class CharacterVisitTown : MonoBehaviour
 
     private void VisitTown(Character character)
     {
-        Interactable interact = Gatherable.GetNearestUnassigned(Vector3.zero).Interactable;
-        character.OrderInterupt(null,interact);
+        ActionWalkingAround walking = ActionBasic.Get<ActionWalkingAround>();
+        character.OrderInterupt(walking, null);
     }
 
 
