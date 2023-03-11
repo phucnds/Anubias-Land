@@ -34,7 +34,7 @@ public class ActionGather : ActionBasic
     public override void UpdateAction(Character character, Interactable target)
     {
         Gatherable gather = target.GetComponent<Gatherable>();
-        float speed = 1f;
+        float speed = 0.1f * GameMgr.Instance.GetSpeedMultiplier();
         character.AddActionProgress(speed * gather.harvest_speed * Time.deltaTime);
         if (character.GetActionProgress() > 1f)
         {
@@ -65,34 +65,19 @@ public class ActionGather : ActionBasic
         character.StopAnimate();
 
 
-
-        // if (market != null && character.stamina < 50)
-        // {
-        //     //Return to storage
-        //     ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
-        //     character.OrderInterupt(buyFood, market.Interactable);
-
-        //     //Find next resource to harvest
-        //     Gatherable next = Gatherable.GetNearest(character.transform.position, next_dist);
-        //     if (next != null && character.CountQueuedOrders() <= 2)
-        //         character.OrderNext(this, next.Interactable, true);
-
-        //     return true;
-        // }
-
-        Market market = Market.GetNearestUnassigned(character.transform.position);
+       Inns inns = Inns.GetNearest(character.transform.position);
         Storage storage = Storage.GetNearestActive(character.transform.position, storage_dist);
-        if (storage != null && market != null)
+        if (storage != null )
         {
             //Return to storage
             ActionStore store = ActionBasic.Get<ActionStore>();
             character.OrderInterupt(store, storage.Interactable);
 
-            if(character.stamina <= 80)
+            if(character.Civilian.Attributes.IsLow(AttributeType.Stamina))
             {
                 
-                ActionBuyFood buyFood = ActionBasic.Get<ActionBuyFood>();
-                character.OrderInterupt(buyFood, market.Interactable);
+                ActionRest rest = ActionBasic.Get<ActionRest>();
+                character.OrderInterupt(rest, inns.Interactable);
             }
      
             //Find next resource to harvest

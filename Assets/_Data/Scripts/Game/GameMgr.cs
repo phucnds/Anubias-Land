@@ -28,6 +28,7 @@ public class GameMgr : MonoBehaviour
     {
         ActionBasic.Load();
         WorkBasic.Load();
+        AttributeData.Load();
     }
 
     public float GetSpeedMultiplier()

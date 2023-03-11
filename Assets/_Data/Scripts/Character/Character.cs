@@ -54,6 +54,8 @@ public class Character : MonoBehaviour
     public static event UnityAction<Character> OnAnyCharacterDeath;
 
     private CharacterAnim anim;
+    private Civilian civilian;
+    private Interactable interact;
 
     #region Debug
 
@@ -82,6 +84,8 @@ public class Character : MonoBehaviour
         animator = GetComponent<Animator>();
         move_target = transform.position;
         anim = GetComponent<CharacterAnim>();
+        civilian = GetComponent<Civilian>();
+        interact = GetComponent<Interactable>();
     }
 
     private void Start()
@@ -417,7 +421,7 @@ public class Character : MonoBehaviour
         Vector3 pos = target != null ? target.transform.position : transform.position;
         CharacterOrder order = new CharacterOrder(action, target, pos, auto);
         action_queue.AddFirst(order);
-        
+
         StopAction();
         ExecuteNextOrder();
     }
@@ -532,5 +536,8 @@ public class Character : MonoBehaviour
         if (callback != null)
             callback.Invoke();
     }
+
+    public Civilian Civilian { get { return civilian; } }
+    public Interactable Interactable { get { return interact; } }
 
 }

@@ -20,11 +20,12 @@ public class Civilian : MonoBehaviour
     public UnityAction<Civilian, WorkBasic> onStartWork;
     public UnityAction<Civilian> onStopWork;
 
-    public float Stamina = 100;
+    private CivilianAttribute attributes;
 
     private void Awake()
     {
         character = GetComponent<Character>();
+        attributes = GetComponent<CivilianAttribute>();
         GameMgr.Instance.CivilianManager?.RegisterColonist(this);
 
     }
@@ -52,7 +53,7 @@ public class Civilian : MonoBehaviour
         //     return;
 
         //Current Work
-        Stamina -= Time.deltaTime;
+       
 
         current_work?.UpdateWork(this);
 
@@ -61,10 +62,7 @@ public class Civilian : MonoBehaviour
 
     public bool IsAnyDepleted()
     {
-        if (Stamina <= 50)
-        {
-            return true;
-        }
+        
 
         return false;
     }
@@ -181,4 +179,5 @@ public class Civilian : MonoBehaviour
     }
 
     public Character Character { get { return character; } }
+    public CivilianAttribute Attributes {get {return attributes;}}
 }
