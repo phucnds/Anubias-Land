@@ -22,10 +22,13 @@ public class Interactable : MonoBehaviour
 
     private Transform transf;
     private Task task;
+    private Destructible destruct;
 
-    private void Awake() {
+    private void Awake()
+    {
 
         task = GetComponent<Task>();
+        destruct = GetComponent<Destructible>();
 
         transf = transform;
         UpdateInteractPoints();
@@ -33,8 +36,9 @@ public class Interactable : MonoBehaviour
 
     private void UpdateInteractPoints()
     {
+        if (interact_root == null) return;
         List<Transform> lst = new List<Transform>();
-        
+
         foreach (Transform trans in interact_root)
         {
             lst.Add(trans);
@@ -120,4 +124,5 @@ public class Interactable : MonoBehaviour
 
     public Task Task { get { return task; } }
     public Transform Transform { get { return transf; } }
+    public Destructible Destructible { get { return destruct; } }
 }

@@ -69,7 +69,7 @@ public class Task : MonoBehaviour
         return true;
     }
 
-    public void OnChangedWorkers() => OnChangedAssignedWorkers();
+    public void OnChangedWorkers() => OnChangedAssignedWorkers?.Invoke();
     
     public Interactable Interactable { get { return interact; } }
 }

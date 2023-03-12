@@ -56,6 +56,7 @@ public class Character : MonoBehaviour
     private CharacterAnim anim;
     private Civilian civilian;
     private Interactable interact;
+    private CharacterAttack attack;
 
     #region Debug
 
@@ -79,6 +80,7 @@ public class Character : MonoBehaviour
         anim = GetComponent<CharacterAnim>();
         civilian = GetComponent<Civilian>();
         interact = GetComponent<Interactable>();
+        attack = GetComponent<CharacterAttack>();
     }
 
     private void Start()
@@ -104,6 +106,7 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
+
         is_Idle = IsIdle();
 
         UpdateAction();
@@ -115,12 +118,12 @@ public class Character : MonoBehaviour
 
         //Slow update
         update_timer += Time.deltaTime;
-        if (update_timer > 0.5f)
+        if (update_timer > 0.1f)
         {
             update_timer = 0f;
             SlowUpdate();
         }
-
+        
     }
 
     private void UpdateAction()
@@ -143,7 +146,7 @@ public class Character : MonoBehaviour
     {
         float mult = GameMgr.Instance.GetSpeedMultiplier();
         ai.maxSpeed = move_speed * mult;
-        GetComponent<AILerp>().rotationSpeed = rotate_speed * mult;
+        //GetComponent<AILerp>().rotationSpeed = rotate_speed * mult;
         if (move_action_target != null && ai != null) ai.destination = move_target;
         moving = ai.velocity;
     }
@@ -170,16 +173,32 @@ public class Character : MonoBehaviour
 
 
         //Reached attack target
-        // else if (IsAttackTargetInRange())
-        //     InteractTarget(move_action_target, move_action_auto);
+        else if (IsAttackTargetInRange())
+            InteractTarget(move_action_target, move_action_auto);
 
         //Obstacles
         // else if (is_fronted)
         //     Stop();
 
         // //Pathfind Failed, Stop
-        // if (is_moving && pathfind != null && pathfind.force_navmesh && pathfind.HasFailed())
+        // if (is_moving && ai != null  && !ai.hasPath)
         //     Stop();
+    }
+
+    public bool IsAttackTargetInRange()
+    {
+        if (attack != null && IsAttackMode())
+        {
+            return attack.IsAttackTargetInRange(move_action_target);
+        }
+        return false;
+    }
+
+    public bool IsAttackMode()
+    {
+        bool attack_next = next_action != null && next_action is ActionAttack;
+        bool attack_now = current_action != null && current_action is ActionAttack;
+        return attack_next || attack_now;
     }
 
     private void SlowUpdate()
@@ -194,7 +213,6 @@ public class Character : MonoBehaviour
 
         //Update Pathfind
         ai.destination = move_target;
-
     }
 
     private void ExecuteNextOrder()
@@ -280,7 +298,7 @@ public class Character : MonoBehaviour
         return localVelocity;
     }
 
-    private void StopMove()
+    public void StopMove()
     {
         is_moving = false;
         move_action_target = null;
@@ -291,7 +309,20 @@ public class Character : MonoBehaviour
 
     public bool HasReachedTarget()
     {
-        return ai.reachedDestination;
+        return ai.remainingDistance <= 0.5f;
+        //return ai.reachedDestination;
+    }
+
+    public ActionBasic GetCurrentAction()
+    {
+        return current_action;
+    }
+
+    public Vector3 GetMoveTargetPos()
+    {
+        if (ai != null && ai.hasPath)
+            return ai.destination;
+        return move_target;
     }
 
     private bool HasSelectTarget()
@@ -308,6 +339,16 @@ public class Character : MonoBehaviour
     public bool IsIdle()
     {
         return current_action == null && !is_moving;
+    }
+
+    public bool IsWaiting()
+    {
+        return is_waiting;
+    }
+
+    public void Wait()
+    {
+        is_waiting = true;
     }
 
     public void InteractTarget(Interactable target, bool auto = false)
@@ -539,7 +580,20 @@ public class Character : MonoBehaviour
             callback.Invoke();
     }
 
+    public void StopWait()
+    {
+        is_waiting = false;
+    }
+
+    public void AttackTarget(Interactable target)
+    {
+        ActionAttack attack = ActionBasic.Get<ActionAttack>();
+        if (attack.CanDoAction(this, target))
+            Order(attack, target);
+    }
+
     public Civilian Civilian { get { return civilian; } }
     public Interactable Interactable { get { return interact; } }
+    public CharacterAttack Attack { get { return attack; } }
 
 }

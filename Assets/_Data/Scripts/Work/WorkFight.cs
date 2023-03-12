@@ -5,18 +5,35 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WorkFight", menuName = "Anubias-Land/Works/WorkFight", order = 10)]
 public class WorkFight : WorkBasic
 {
-    public ActionConquest conquest;
+    public ActionAttack action_attack;
 
     public override void StartWork(Civilian civilian)
     {
-        civilian.AutoOrder(conquest, civilian.GetWorkTarget());
+        Interactable target = civilian.GetWorkTarget();
+        civilian.Character.AttackTarget(target);
+    }
+
+    public override void StopWork(Civilian civilian)
+    {
+
+    }
+
+    public override bool CanDoWork(Civilian civilian, Interactable target)
+    {
+        if (target != null)
+        {
+            Destructible destruct = target.Destructible;
+            bool azone = destruct != null && destruct.CanBeAttacked();
+            return azone;
+        }
+        return false;
     }
 
     public override Interactable FindBestTarget(Vector3 pos)
     {
-        Fortress fortress = Fortress.GetNearest(Vector3.zero);
-        if (fortress != null)
-            return fortress.Interactable;
+        Destructible destruct = Destructible.GetNearest(AttackTeam.Enemy, pos);
+        if (destruct != null)
+            return destruct.Interactable;
         return null;
     }
 }

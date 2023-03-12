@@ -30,7 +30,8 @@ public class CharacterAnim : MonoBehaviour
 
     private void Start()
     {
-      
+        if (character.Attack != null)
+            character.Attack.onAttack += OnAttack;
     }
 
     void Update()
@@ -50,14 +51,11 @@ public class CharacterAnim : MonoBehaviour
         prev_speed = mult;
     }
 
-    // private void OnAttack(Destructible target)
-    // {
-    //     string anim = attack_anim;
-    //     EquipWeapon equip = character.Attack?.GetWeaponObject();
-    //     if (equip != null && !string.IsNullOrEmpty(equip.AttackAnim))
-    //         anim = equip.AttackAnim;
-    //     animator?.SetTrigger(anim);
-    // }
+    private void OnAttack(Destructible target)
+    {
+        string anim = attack_anim;
+        animator?.SetTrigger(anim);
+    }
 
     private void OnDeath()
     {

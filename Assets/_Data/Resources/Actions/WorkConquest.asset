@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73b458f455565b4882566bcfe2d98c5, type: 3}
-  m_Name: WorkFight
+  m_Script: {fileID: 11500000, guid: 2df87964c0ea3b94794de2cac7b91216, type: 3}
+  m_Name: WorkConquest
   m_EditorClassIdentifier: 
-  id: fight
-  priority: 100
+  id: conquest
+  priority: 0
   range: 1000
-  action_attack: {fileID: 11400000, guid: 9106f031eca014744ab993ae9c629329, type: 2}
+  conquest: {fileID: 11400000, guid: 114c94ba3d5ce5344ac6cb33062bb331, type: 2}
