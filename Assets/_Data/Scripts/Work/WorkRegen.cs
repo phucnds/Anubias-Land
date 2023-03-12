@@ -10,7 +10,7 @@ public class WorkRegen : WorkBasic
 
     public override void StartWork(Civilian civilian)
     {
-            civilian.Order(walking, civilian.GetWorkTarget());
+            civilian.AutoOrder(walking, civilian.GetWorkTarget());
     }
 
     public override Interactable FindBestTarget(Vector3 pos)

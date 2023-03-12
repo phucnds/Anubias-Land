@@ -36,14 +36,14 @@ public class ActionWalkingAround : ActionBasic
             else
             {
                 state_timer = Random.Range(-1f, 1f);
-                FindWanderTarget(character);
+                FindWanderTarget(character, target);
             }
 
         }
 
     }
 
-    private void FindWanderTarget(Character character)
+    private void FindWanderTarget(Character character, Interactable target)
     {
         float range = Random.Range(wander_min, wander_range);
         float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;

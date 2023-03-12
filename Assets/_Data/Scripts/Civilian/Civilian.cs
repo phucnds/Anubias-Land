@@ -104,44 +104,43 @@ public class Civilian : MonoBehaviour
     {
         StopWork();
         character.Order(action, selectable);
-        manual_order = true;
     }
 
     public void OrderInterupt(ActionBasic action, Interactable selectable)
     {
         StopWork();
         character.OrderInterupt(action, selectable);
-        manual_order = true;
     }
 
     public void OrderNext(ActionBasic action, Interactable selectable)
     {
         StopWork();
         character.OrderNext(action, selectable);
-        manual_order = true;
     }
 
     public void AutoOrder(ActionBasic action, Interactable selectable)
     {
-        character.Order(action, selectable);
-        manual_order = false;
+        character.Order(action, selectable, true);
     }
 
     public void AutoOrderInterupt(ActionBasic action, Interactable selectable)
     {
-        character.OrderInterupt(action, selectable);
-        manual_order = false;
+        character.OrderInterupt(action, selectable, true);
     }
 
     public void AutoOrderNext(ActionBasic action, Interactable selectable)
     {
-        character.OrderNext(action, selectable);
-        manual_order = false;
+        character.OrderNext(action, selectable, true);
     }
 
     public void StopAutoAction()
     {
         character.CancelAutoOrders();
+    }
+
+    public void CancelOrders()
+    {
+        character.CancelOrders();
     }
 
     public WorkBasic GetWork()

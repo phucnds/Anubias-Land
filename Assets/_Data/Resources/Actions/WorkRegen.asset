@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7bbe7a2e9e2d84bb66ebb9ede9a8ef, type: 3}
   m_Name: WorkRegen
   m_EditorClassIdentifier: 
-  id: 
+  id: regen
   priority: 0
   range: 100
-  walking: {fileID: 0}
+  walking: {fileID: 11400000, guid: 2ff685808a4d1ca479a12255992f6506, type: 2}

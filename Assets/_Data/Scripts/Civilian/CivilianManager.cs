@@ -78,6 +78,7 @@ public class CivilianManager : MonoBehaviour
                     civilian.StopWork();
                 if (work_target != null && work_target.Task != null && work_target.Task.IsOverAssigned())
                 {
+                    civilian.CancelOrders();
                     civilian.StopWork();
                 }
                     
