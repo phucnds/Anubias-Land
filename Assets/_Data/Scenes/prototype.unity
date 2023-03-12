@@ -1308,12 +1308,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 4, z: 6}
   m_Center: {x: 0, y: 2, z: 0}
---- !u!1 &150214557 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6485580522923082256, guid: fd68e25d0e6536f42b51328f70ab4d9a,
-    type: 3}
-  m_PrefabInstance: {fileID: 472295963}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &152879917
 GameObject:
   m_ObjectHideFlags: 0
@@ -3508,7 +3502,7 @@ PrefabInstance:
         type: 3}
       propertyPath: actions.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 4b5aee352d06bc647b447236f9b6eeeb,
+      objectReference: {fileID: 11400000, guid: 2ff685808a4d1ca479a12255992f6506,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd68e25d0e6536f42b51328f70ab4d9a, type: 3}
@@ -3518,20 +3512,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 472295963}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &472295969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150214557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d598485cce704ad4a08538831d53f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  workers_max: 5
-  workers: 5
 --- !u!1 &476340639
 GameObject:
   m_ObjectHideFlags: 0
@@ -20590,7 +20570,7 @@ MonoBehaviour:
   civilianManager: {fileID: 126989957}
   taskManager: {fileID: 1951751133}
   uiCanvas: {fileID: 2827532790028138617}
-  speed_multiplier: 1
+  speed_multiplier: 10
 --- !u!1001 &1581966961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26759,7 +26739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPrefabs: {fileID: 2469191413866366902, guid: 18044128403f7bb46b822cabf329126f,
     type: 3}
-  amount: 1
+  amount: 5
 --- !u!1 &1982522479
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,8 +33,8 @@ public class CharacterVisitTown : MonoBehaviour
 
     private void VisitTown(Character character)
     {
-        ActionWalkingAround walking = ActionBasic.Get<ActionWalkingAround>();
-        character.OrderInterupt(walking, null);
+        TownHall townHall = GameMgr.Instance.BuildingManager.GetTownHall();
+        character.OrderInterupt(null, townHall.Interactable);
     }
 
 

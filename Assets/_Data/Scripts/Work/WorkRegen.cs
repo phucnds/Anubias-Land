@@ -10,7 +10,15 @@ public class WorkRegen : WorkBasic
 
     public override void StartWork(Civilian civilian)
     {
-        civilian.AutoOrder(walking, null);
+            civilian.Order(walking, civilian.GetWorkTarget());
+    }
+
+    public override Interactable FindBestTarget(Vector3 pos)
+    {
+        TownHall townHall = GameMgr.Instance.BuildingManager.GetTownHall();
+        if (townHall != null)
+            return townHall.Interactable;
+        return null;
     }
 
 }

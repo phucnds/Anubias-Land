@@ -74,13 +74,11 @@ public class Civilian : MonoBehaviour
 
     public void StartWork(WorkBasic work, Interactable target)
     {
-        Debug.Log("StartWork");
         if (work != null && CanDoWork(work, target))
         {
             StopWork();
             current_work = work;
             work_target = target;
-            manual_order = false;
             work.StartWork(this);
             onStartWork?.Invoke(this, work);
         }
@@ -90,11 +88,9 @@ public class Civilian : MonoBehaviour
     {
         if (current_work != null)
             current_work.StopWork(this);
-        if (!manual_order)
-            character.StopAction();
+        StopAutoAction();
         current_work = null;
         work_target = null;
-        manual_order = true;
         onStopWork?.Invoke(this);
     }
 

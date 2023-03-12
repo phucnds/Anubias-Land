@@ -73,11 +73,14 @@ public class CivilianManager : MonoBehaviour
             {
                 //Stop work
 
-                Debug.Log(civilian.IsAnyDepleted());
+                Debug.Log(work_target.Task?.IsOverAssigned());
                 if (civilian.IsIdle() && !civilian.CanDoWork(current_work, work_target))// || civilian.IsAnyDepleted())
                     civilian.StopWork();
                 if (work_target != null && work_target.Task != null && work_target.Task.IsOverAssigned())
+                {
                     civilian.StopWork();
+                }
+                    
             }
         }
     }
@@ -150,14 +153,14 @@ public class CivilianManager : MonoBehaviour
     {
         AssignCivilian(civilian, civilian.GetWorkTarget());
         if (civilian.GetWorkTarget() == null) return;
-        //civilian.GetWorkTarget().Task?.OnChangedWorkers();
+        civilian.GetWorkTarget()?.Task?.OnChangedWorkers();
     }
 
     private void OnStopWork(Civilian civilian)
     {
         UnassignCivilian(civilian);
         if (civilian.GetWorkTarget() == null) return;
-        //civilian.GetWorkTarget().Task?.OnChangedWorkers();
+        civilian.GetWorkTarget()?.Task?.OnChangedWorkers();
     }
 
     private void AssignCivilian(Civilian civilian, Interactable select)

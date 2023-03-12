@@ -16,8 +16,6 @@ public class WorkHarvest : WorkBasic
 
         if (gather != null)
         {
-            Debug.Log("AutoOrder");
-            Debug.Log(gather.Interactable);
             civilian.AutoOrder(action_gather, gather.Interactable);
         }
             

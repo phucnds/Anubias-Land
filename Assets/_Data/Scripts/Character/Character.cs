@@ -278,7 +278,7 @@ public class Character : MonoBehaviour
         move_action_target = null;
         action_target = null;
         //current_action = null;
-        move_action_auto = false;
+        move_action_auto = true;
         ai.destination = pos;
     }
 

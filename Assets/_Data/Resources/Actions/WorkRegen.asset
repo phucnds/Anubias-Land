@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0b2b621bd36b6f4788278bf0b106d93, type: 3}
-  m_Name: ActionWalkingAround
+  m_Script: {fileID: 11500000, guid: 2e7bbe7a2e9e2d84bb66ebb9ede9a8ef, type: 3}
+  m_Name: WorkRegen
   m_EditorClassIdentifier: 
-  id: walking
-  wander_min: 6
-  wander_range: 15
-  wander_interval: 10
+  id: 
+  priority: 0
+  range: 100
+  walking: {fileID: 0}
