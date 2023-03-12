@@ -28,10 +28,17 @@ public class ActionWalkingAround : ActionBasic
         if (state_timer > wander_interval)
         {
             Inns inns = Inns.GetNearest(character.transform.position);
+            Shop shop = Shop.GetNearest(character.transform.position);
+
             if (character.Civilian.Attributes.IsLow(AttributeType.Stamina) && inns != null)
             {
                 ActionRest rest = ActionBasic.Get<ActionRest>();
                 character.OrderInterupt(rest, inns.Interactable);
+            }
+            else if (character.Civilian.Attributes.IsLow(AttributeType.Satiety) && shop != null)
+            {
+                ActionShopping shopping = ActionBasic.Get<ActionShopping>();
+                character.OrderInterupt(shopping, shop.Interactable);
             }
             else
             {

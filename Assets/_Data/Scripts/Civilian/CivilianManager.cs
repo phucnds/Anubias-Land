@@ -73,7 +73,7 @@ public class CivilianManager : MonoBehaviour
             {
                 //Stop work
 
-                Debug.Log(work_target.Task?.IsOverAssigned());
+                //Debug.Log(work_target.Task?.IsOverAssigned());
                 if (civilian.IsIdle() && !civilian.CanDoWork(current_work, work_target))// || civilian.IsAnyDepleted())
                     civilian.StopWork();
                 if (work_target != null && work_target.Task != null && work_target.Task.IsOverAssigned())
@@ -91,7 +91,7 @@ public class CivilianManager : MonoBehaviour
         //Start working on a task
         if (civilian != null && work != null && target != null)
         {
-            Debug.Log("can do work");
+            //Debug.Log("can do work");
             civilian.StartWork(work, target);
         }
     }
@@ -106,20 +106,17 @@ public class CivilianManager : MonoBehaviour
             {
                 if (!civilian.IsWorking() || work.priority > civilian.GetWork().priority)
                 {
-                    Debug.Log("isn't working");
+                    //Debug.Log("isn't working");
                     float dist = (civilian.transform.position - target.Transform.position).magnitude;
                     if (dist < work.range && civilian.CanDoWork(work, target))
                     {
                         bool best_idle = best != null && best.IsIdle();
                         bool is_idle_better = civilian.IsIdle() || !best_idle; //Idle colonists priority over working ones
                         bool is_better = is_idle_better && dist < min_dist;
-
-                        Debug.Log("in range");
-
+                        //Debug.Log("in range");
                         if (is_better)
                         {
-
-                            Debug.Log("has best");
+                            //Debug.Log("has best");
                             min_dist = dist;
                             best = civilian;
                         }

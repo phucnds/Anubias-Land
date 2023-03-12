@@ -11,6 +11,7 @@ public class BuildingManager : MonoBehaviour
 
     private List<Inns> listInns = new List<Inns>();
     private List<Market> listMarket = new List<Market>();
+    private List<Shop> listShop = new List<Shop>();
 
     private void Awake()
     {
@@ -36,6 +37,11 @@ public class BuildingManager : MonoBehaviour
         {
             listMarket.Remove((Market)building);
         }
+
+        if (building is Shop)
+        {
+            listShop.Remove((Shop)building);
+        }
     }
 
     private void Building_OnAnyBuildingCreated(Building building)
@@ -50,6 +56,11 @@ public class BuildingManager : MonoBehaviour
         if (building is Market)
         {
             listMarket.Add((Market)building);
+        }
+
+        if (building is Shop)
+        {
+            listShop.Add((Shop)building);
         }
 
     }
@@ -77,5 +88,10 @@ public class BuildingManager : MonoBehaviour
     public List<Market> GetListMarkets()
     {
         return listMarket;
+    }
+
+    public List<Shop> GetListShops()
+    {
+        return listShop;
     }
 }

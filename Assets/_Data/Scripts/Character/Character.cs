@@ -61,10 +61,6 @@ public class Character : MonoBehaviour
 
     public bool debug = false;
     public int inventoryItem = 0;
-    public float stamina = 100;
-    public float satiety = 100;
-    public bool canRest = true;
-    public bool canBuyFood = true;
     public GameObject model;
 
     public void ToggleModel(bool flag)
@@ -72,9 +68,6 @@ public class Character : MonoBehaviour
         model.SetActive(flag);
     }
     #endregion
-
-
-
 
     IAstarAI ai;
     private Animator animator;
@@ -112,8 +105,6 @@ public class Character : MonoBehaviour
     private void Update()
     {
         is_Idle = IsIdle();
-        stamina -= Time.deltaTime;
-
 
         UpdateAction();
         UpdateMove();

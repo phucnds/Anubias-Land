@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ActionBasic : ScriptableObject {
+public abstract class ActionBasic : ScriptableObject
+{
 
     public string id;  //Id for the save file
 
@@ -10,32 +11,32 @@ public abstract class ActionBasic : ScriptableObject {
 
     public virtual void GettActionID()
     {
-        Debug.Log("Action: " + id);
+        //Debug.Log("Action: " + id);
     }
 
     public virtual void StartAction(Character character, Interactable target)
     {
-        Debug.Log("StartAction");
+        // Debug.Log("StartAction");
     }
 
     public virtual void StopAction(Character character, Interactable target)
     {
-        Debug.Log("StopAction");
+        //Debug.Log("StopAction");
     }
 
     public virtual void UpdateAction(Character character, Interactable target)
     {
-        Debug.Log("UpdateAction");
+        //Debug.Log("UpdateAction");
     }
 
     public virtual void TriggerAction(Character character, Interactable target, string trigger)
     {
-        Debug.Log("StartAction");
+        //Debug.Log("StartAction");
     }
 
     public virtual bool CanDoAction(Character character, Interactable target)
     {
-        return true; 
+        return true;
     }
 
     public virtual bool OnReadyAction(Character character, Interactable target)
