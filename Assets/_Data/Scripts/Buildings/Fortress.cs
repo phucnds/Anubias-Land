@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Fortress : Building
 {
+    [SerializeField] private Transform spawnerPoint;
+    [SerializeField] private int amount = 10;
+    [SerializeField] private GameObject[] enemyGameObjects;
+
+    
+
+
+
+
+
+
+
+
     public static Fortress GetNearest(Vector3 pos, float range = 999f, Fortress ignore = null)
     {
         float min_dist = range;

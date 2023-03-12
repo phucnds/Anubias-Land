@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Building : MonoBehaviour
+public abstract class Building : MonoBehaviour
 {
     public static event UnityAction<Building> OnAnyBuildingCreated;
     public static event UnityAction<Building> OnAnyBuildingDetroyed;
