@@ -118,7 +118,7 @@ public class Character : MonoBehaviour
 
         //Slow update
         update_timer += Time.deltaTime;
-        if (update_timer > 0.1f)
+        if (update_timer > 0.25f)
         {
             update_timer = 0f;
             SlowUpdate();
@@ -309,8 +309,8 @@ public class Character : MonoBehaviour
 
     public bool HasReachedTarget()
     {
-        return ai.remainingDistance <= 0.5f;
-        //return ai.reachedDestination;
+        //return ai.remainingDistance <= 0.1f;
+        return ai.reachedDestination;
     }
 
     public ActionBasic GetCurrentAction()

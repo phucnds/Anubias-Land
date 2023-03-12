@@ -3427,11 +3427,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CivilianFemale
       objectReference: {fileID: 0}
-    - target: {fileID: 7753319548910193687, guid: 18044128403f7bb46b822cabf329126f,
-        type: 3}
-      propertyPath: attack_range
-      value: 2.4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18044128403f7bb46b822cabf329126f, type: 3}
 --- !u!4 &7531766174056621517 stripped

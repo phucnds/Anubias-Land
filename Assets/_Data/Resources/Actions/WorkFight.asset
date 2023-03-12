@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: fight
   priority: 100
-  range: 1000
-  action_attack: {fileID: 11400000, guid: 9106f031eca014744ab993ae9c629329, type: 2}
+  range: 6
+  action_attack: {fileID: 0}

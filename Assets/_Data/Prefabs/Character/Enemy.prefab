@@ -1,5 +1,136 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &180197260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180197261}
+  - component: {fileID: 180197264}
+  - component: {fileID: 180197263}
+  - component: {fileID: 180197262}
+  m_Layer: 0
+  m_Name: SM_Wep_Sword_Medium_05 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180197261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180197260}
+  m_LocalRotation: {x: 0.000000089406946, y: 0.000000029802315, z: 0.00000014901158,
+    w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5230893154030079756}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
+--- !u!33 &180197264
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180197260}
+  m_Mesh: {fileID: 4300000, guid: 6f4381fb4a70e7648bf365071440bbc7, type: 3}
+--- !u!23 &180197263
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180197260}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 2a12d3fc0532ba64e972160db18dfd99, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &180197262
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180197260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43223254113754966, guid: d02ab138552a18749963be75da5222fe, type: 2}
+--- !u!1 &5232383877144945804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5230893154030079756}
+  m_Layer: 0
+  m_Name: SM_Wep_Sword_Medium_05
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5230893154030079756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232383877144945804}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0.145, y: 0.042, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 180197261}
+  m_Father: {fileID: 8512017856829801854}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &8514065865796494326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,6 +2071,7 @@ Transform:
   - {fileID: 8512172012807026818}
   - {fileID: 8520321045706051078}
   - {fileID: 8520612090945112264}
+  - {fileID: 5230893154030079756}
   m_Father: {fileID: 8512220359970166192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3150,27 +3282,27 @@ PrefabInstance:
     - target: {fileID: 2469191413866366890, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2469191413866366890, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2469191413866366890, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2469191413866366890, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2469191413866366890, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2469191413866366890, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
@@ -3180,7 +3312,7 @@ PrefabInstance:
     - target: {fileID: 2469191413866366890, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2469191413866366890, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
@@ -3194,6 +3326,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5703402747122507195, guid: 18044128403f7bb46b822cabf329126f,
         type: 3}
+      propertyPath: HP
+      value: 50000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703402747122507195, guid: 18044128403f7bb46b822cabf329126f,
+        type: 3}
       propertyPath: target_team
       value: 20
       objectReference: {fileID: 0}
@@ -3201,6 +3338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: target_group
       value: Undead
+      objectReference: {fileID: 0}
+    - target: {fileID: 7111150704271976102, guid: 18044128403f7bb46b822cabf329126f,
+        type: 3}
+      propertyPath: use_max
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18044128403f7bb46b822cabf329126f, type: 3}
