@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ActionConquest", menuName = "Anubias-Land/Actions/ActionConquest", order = 0)]
 public class ActionConquest : ActionBasic
 {
-    public float wander_min = 5f;
-    public float wander_range = 20f;    //How far from the starting pos can it wander
+    public float wander_min = 8f;
+    public float wander_range = 40f;    //How far from the starting pos can it wander
     public float wander_interval = 10f; //Interval between changing wander position
 
     private Vector3 start_pos = Vector3.zero;
