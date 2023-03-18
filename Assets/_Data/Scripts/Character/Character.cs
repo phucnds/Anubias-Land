@@ -122,7 +122,7 @@ public class Character : MonoBehaviour
 
         //Slow update
         update_timer += Time.deltaTime;
-        if (update_timer > 0.25f)
+        if (update_timer > 0.5f)
         {
             update_timer = 0f;
             SlowUpdate();

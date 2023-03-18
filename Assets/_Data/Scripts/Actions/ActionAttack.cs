@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ActionAttack", menuName = "Anubias-Land/Actions/ActionAttack", order = 0)]
 public class ActionAttack : ActionBasic
 {
+
     public override void StartAction(Character character, Interactable target)
     {
         character.FaceToward(target.transform.position);
@@ -17,6 +18,7 @@ public class ActionAttack : ActionBasic
 
     public override void UpdateAction(Character character, Interactable target)
     {
+        
         Destructible destruct = target.Destructible;
         if (destruct.IsDead())
         {
@@ -29,13 +31,10 @@ public class ActionAttack : ActionBasic
             if (!character.Attack.IsAttackTargetInRange(destruct.Interactable))
             {
                 AttackTarget(character, destruct);
-                Debug.Log("Move to target");
             }
                 
             else
             {
-                character.FaceToward(target.transform.position);
-                Debug.Log("in range");
                 character.Attack.AttackStrike(destruct);
             }
                 

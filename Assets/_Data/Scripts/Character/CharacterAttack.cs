@@ -76,8 +76,6 @@ public class CharacterAttack : MonoBehaviour
             onAttack.Invoke(target);
 
         //Face target
-        character.FaceToward(target.transform.position);
-        //character.transform.LookAt(target.transform);
 
         //Wait for windup
         float windup = attack_windup;
@@ -165,7 +163,8 @@ public class CharacterAttack : MonoBehaviour
     {
         if (target != null)
         {
-            float dist = (target.transform.position - transform.position).magnitude;
+            float dist = Vector3.Distance(target.transform.position, transform.position);
+            //(target.transform.position - transform.position).magnitude; 
             return dist <= GetTargetAttackRange(target);
         }
         return false;
@@ -188,7 +187,7 @@ public class CharacterAttack : MonoBehaviour
 
     public float GetAttackSpeedMultiplier()
     {
-        float att_speed = 1f ;//+ character.GetBonusValue(BonusType.AttackSpeed);
+        float att_speed = 1f;//+ character.GetBonusValue(BonusType.AttackSpeed);
         return att_speed * GameMgr.Instance.GetSpeedMultiplier();
     }
 

@@ -25,17 +25,23 @@ public class Interactable : MonoBehaviour
     private Destructible destruct;
 
 
-    public int amount = 1;
+    private static List<Interactable> interact_list = new List<Interactable>();
 
     private void Awake()
     {
-
+        interact_list.Add(this);
         task = GetComponent<Task>();
         destruct = GetComponent<Destructible>();
 
         transf = transform;
         UpdateInteractPoints();
     }
+
+    private void OnDestroy()
+    {
+        interact_list.Remove(this);
+    }
+
 
     private void UpdateInteractPoints()
     {
@@ -125,6 +131,11 @@ public class Interactable : MonoBehaviour
         int nb = Character.CountTargetingTarget(this);
         //return nb >= use_max;
         return false;
+    }
+
+    public static List<Interactable> GetAll()
+    {
+        return interact_list;
     }
 
     public Task Task { get { return task; } }
