@@ -3344,6 +3344,11 @@ PrefabInstance:
       propertyPath: use_max
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7111150704271976102, guid: 18044128403f7bb46b822cabf329126f,
+        type: 3}
+      propertyPath: use_range
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18044128403f7bb46b822cabf329126f, type: 3}
 --- !u!4 &3080041882464965734 stripped

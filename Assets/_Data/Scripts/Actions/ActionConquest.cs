@@ -44,7 +44,7 @@ public class ActionConquest : ActionBasic
             else
             {
                 state_timer = Random.Range(-1f, 1f);
-                //FindWanderTarget(character, target);
+                FindWanderTarget(character, target);
             }
 
         }

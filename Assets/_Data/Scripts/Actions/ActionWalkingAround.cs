@@ -56,10 +56,7 @@ public class ActionWalkingAround : ActionBasic
         float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         Vector3 spos = start_pos;
 
-        int x = Mathf.RoundToInt(Mathf.Cos(angle) * range);
-        int z = Mathf.RoundToInt(Mathf.Sin(angle) * range);
-
-        Vector3 pos = spos + new Vector3(x % 2 == 0 ? x : x - 1, 0f, z % 2 == 0 ? z : z - 1);
+        Vector3 pos = spos + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * range;
         character.Move(pos);
     }
 }

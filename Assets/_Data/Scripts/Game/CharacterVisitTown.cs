@@ -24,6 +24,7 @@ public class CharacterVisitTown : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             GameObject characterGameObject = Instantiate(characterPrefabs, transform.position, Quaternion.identity, transform);
+            characterGameObject.name = "Character_" + i;
             Character character = characterGameObject.GetComponent<Character>();
 
             //VisitTown(character);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 
 public class GameMgr : MonoBehaviour
@@ -16,15 +17,25 @@ public class GameMgr : MonoBehaviour
     [SerializeField] private UIManager uiCanvas;
 
     public static GameMgr Instance { get; private set; }
-   
+
     [SerializeField] private int timeScale = 1;
     private float speed_multiplier = 1f;
+
+
+    [SerializeField] private AstarPath path;
+
+    private AstarData data;
+    private GridGraph gridGraph;
 
     private void Awake()
     {
         Instance = this;
         LoadData();
         Time.timeScale = timeScale;
+
+        data = path.data;
+        gridGraph = data.gridGraph;
+
     }
 
     private void LoadData()
@@ -32,6 +43,11 @@ public class GameMgr : MonoBehaviour
         ActionBasic.Load();
         WorkBasic.Load();
         AttributeData.Load();
+    }
+
+    public GridGraph GetGridGraph()
+    {
+        return gridGraph;
     }
 
     public float GetSpeedMultiplier()

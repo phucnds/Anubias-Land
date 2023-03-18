@@ -151,7 +151,7 @@ public class Character : MonoBehaviour
         float mult = GameMgr.Instance.GetSpeedMultiplier();
         ai.maxSpeed = move_speed * mult;
         //GetComponent<AILerp>().rotationSpeed = rotate_speed * mult;
-        if (move_action_target != null && ai != null) ai.destination = move_target;
+        if (move_action_target != null && ai != null) ai.destination = GridHelper.ConvertPos(move_target);
         moving = ai.velocity;
     }
 
@@ -216,7 +216,7 @@ public class Character : MonoBehaviour
             last_target_pos = action_target.GetInteractPosition(action_target_pos);
 
         //Update Pathfind
-        ai.destination = move_target;
+        ai.destination = GridHelper.ConvertPos(move_target);
     }
 
     private void ExecuteNextOrder()
@@ -269,9 +269,8 @@ public class Character : MonoBehaviour
         current_action = null;
         move_action_auto = auto;
         action_target_pos = target.GetInteractPositionIndex(this);
-        Debug.Log(this.name + action_target_pos);
         move_target = target.GetInteractPosition(action_target_pos);
-        ai.destination = move_target;
+        ai.destination = GridHelper.ConvertPos(move_target);
     }
 
     public void MoveTo(Vector3 pos)
@@ -282,7 +281,7 @@ public class Character : MonoBehaviour
         action_target = null;
         current_action = null;
         move_action_auto = false;
-        ai.destination = pos;
+        ai.destination = GridHelper.ConvertPos(pos);
     }
 
     public void Move(Vector3 pos)
@@ -293,7 +292,7 @@ public class Character : MonoBehaviour
         action_target = null;
         //current_action = null;
         move_action_auto = true;
-        ai.destination = pos;
+        ai.destination = GridHelper.ConvertPos(pos);
     }
 
     public Vector3 GetLocalVelocity()
@@ -529,12 +528,12 @@ public class Character : MonoBehaviour
         anim?.Animate(anim_id, active);
     }
 
-    public void FaceToward(Transform trans)
+    public void FaceToward(Vector3 pos)
     {
         // facing = pos - transform.position;
         // facing.y = 0f;
         // facing.Normalize();
-        transform.LookAt(trans);
+        transform.LookAt(GridHelper.ConvertPos(pos));
     }
 
     public bool IsReallyMoving()

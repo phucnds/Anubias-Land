@@ -76,7 +76,7 @@ public class CharacterAttack : MonoBehaviour
             onAttack.Invoke(target);
 
         //Face target
-        character.FaceToward(target.transform);
+        character.FaceToward(target.transform.position);
         //character.transform.LookAt(target.transform);
 
         //Wait for windup

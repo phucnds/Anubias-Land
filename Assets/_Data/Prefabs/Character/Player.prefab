@@ -128,15 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed44410415e6fb4798668052f71fd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_speed: 2
-  rotate_speed: 100
-  move_action_target: {fileID: 0}
-  current_action: {fileID: 0}
-  next_action: {fileID: 0}
   is_Idle: 0
-  debug: 1
+  hasReachedTarget: 0
   inventoryItem: 0
-  model: {fileID: 0}
 --- !u!114 &8025106092371397530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack_type: 5
   attack_damage: 5
-  attack_range: 2.1
+  attack_range: 1
   attack_cooldown: 2
   attack_windup: 0.7
   attack_windout: 0.4
@@ -204,3 +198,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9106f031eca014744ab993ae9c629329, type: 2}
   interact_root: {fileID: 0}
   interact_points: []
+  amount: 1
