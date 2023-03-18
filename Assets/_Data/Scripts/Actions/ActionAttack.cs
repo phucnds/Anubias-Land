@@ -6,11 +6,6 @@ using UnityEngine;
 public class ActionAttack : ActionBasic
 {
 
-    public override void StartAction(Character character, Interactable target)
-    {
-        character.FaceToward(target.transform.position);
-    }
-
     public override void StopAction(Character character, Interactable target)
     {
         character.StopAnimate();
@@ -28,15 +23,16 @@ public class ActionAttack : ActionBasic
 
         if (character.Attack.IsCooldownReady())
         {
-            if (!character.Attack.IsAttackTargetInRange(destruct.Interactable))
+            if (character.Attack.IsAttackTargetInRange(destruct.Interactable) && character.HasReachedTarget())
             {
-                AttackTarget(character, destruct);
+                
+                character.Attack.AttackStrike(destruct);
             }
                 
             else
             {
-                character.Attack.AttackStrike(destruct);
-            }
+                AttackTarget(character, destruct);
+            }   
                 
         }
     }

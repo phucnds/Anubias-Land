@@ -18,7 +18,7 @@ public class GameMgr : MonoBehaviour
 
     public static GameMgr Instance { get; private set; }
 
-    [SerializeField] private int timeScale = 1;
+    [SerializeField] private float timeScale = 1;
     private float speed_multiplier = 1f;
 
 

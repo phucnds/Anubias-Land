@@ -177,8 +177,8 @@ public class Character : MonoBehaviour
 
 
         //Reached attack target
-        else if (IsAttackTargetInRange())
-            InteractTarget(move_action_target, move_action_auto);
+        // else if (IsAttackTargetInRange())
+        //     InteractTarget(move_action_target, move_action_auto);
 
         //Obstacles
         // else if (is_fronted)

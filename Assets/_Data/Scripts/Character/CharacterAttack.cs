@@ -68,6 +68,7 @@ public class CharacterAttack : MonoBehaviour
     //Melee or ranged targeting one target
     private IEnumerator AttackRun(Destructible target)
     {
+        character.FaceToward(target.transform.position);
         character.Wait();
         is_attacking = true;
 
