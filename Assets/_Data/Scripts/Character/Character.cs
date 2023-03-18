@@ -23,19 +23,19 @@ public class CharacterOrder
 public class Character : MonoBehaviour
 {
     [Header("Move")]
-    public float move_speed = 10f;      //How fast the colonist moves?
-    public float rotate_speed = 250f;   //How fast it can rotate
+    private float move_speed = 2;      //How fast the colonist moves?
+    private float rotate_speed = 100;   //How fast it can rotate
 
     private bool is_moving = false;
     private Vector3 moving;
     private Vector3 facing;
     private Vector3 move_target;
-    public Interactable move_action_target;
+    private Interactable move_action_target;
     private int action_target_pos;
     private bool move_action_auto = false;
 
-    public ActionBasic current_action = null;
-    public ActionBasic next_action = null;
+    private ActionBasic current_action = null;
+    private ActionBasic next_action = null;
     private Interactable action_target = null;
     private Vector3 last_target_pos;
     private float action_progress = 0f;
@@ -46,7 +46,7 @@ public class Character : MonoBehaviour
     private bool is_waiting = false;
     private bool is_dead = false;
     private float update_timer = 0f;
-    public bool is_Idle;
+    
 
     private LinkedList<CharacterOrder> action_queue = new LinkedList<CharacterOrder>();
 
@@ -59,10 +59,13 @@ public class Character : MonoBehaviour
     private CharacterAttack attack;
 
     #region Debug
+    [Header("Debug")]
+    public bool is_Idle;
+    public bool hasReachedTarget;
 
-    public bool debug = false;
+    private bool debug = false;
     public int inventoryItem = 0;
-    public GameObject model;
+    private GameObject model;
 
     public void ToggleModel(bool flag)
     {
@@ -108,6 +111,7 @@ public class Character : MonoBehaviour
     {
 
         is_Idle = IsIdle();
+        hasReachedTarget = HasReachedTarget();
 
         UpdateAction();
         UpdateMove();
@@ -265,6 +269,7 @@ public class Character : MonoBehaviour
         current_action = null;
         move_action_auto = auto;
         action_target_pos = target.GetInteractPositionIndex(this);
+        Debug.Log(this.name + action_target_pos);
         move_target = target.GetInteractPosition(action_target_pos);
         ai.destination = move_target;
     }
@@ -524,11 +529,12 @@ public class Character : MonoBehaviour
         anim?.Animate(anim_id, active);
     }
 
-    public void FaceToward(Vector3 pos)
+    public void FaceToward(Transform trans)
     {
-        facing = pos - transform.position;
-        facing.y = 0f;
-        facing.Normalize();
+        // facing = pos - transform.position;
+        // facing.y = 0f;
+        // facing.Normalize();
+        transform.LookAt(trans);
     }
 
     public bool IsReallyMoving()

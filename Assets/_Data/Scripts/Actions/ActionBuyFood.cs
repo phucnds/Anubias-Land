@@ -9,7 +9,7 @@ public class ActionBuyFood : ActionBasic
     {
         
         
-        character.FaceToward(target.transform.position);
+        character.FaceToward(target.transform);
         character.WaitFor(2f, () =>
         {      
             

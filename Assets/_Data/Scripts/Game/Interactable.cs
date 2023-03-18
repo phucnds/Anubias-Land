@@ -24,6 +24,9 @@ public class Interactable : MonoBehaviour
     private Task task;
     private Destructible destruct;
 
+
+    public int amount = 1;
+
     private void Awake()
     {
 
@@ -51,6 +54,7 @@ public class Interactable : MonoBehaviour
     {
         onInteract?.Invoke(character);
     }
+
 
     public Vector3 GetInteractCenter()
     {
@@ -119,7 +123,8 @@ public class Interactable : MonoBehaviour
     public bool IsInteractFull()
     {
         int nb = Character.CountTargetingTarget(this);
-        return nb >= use_max;
+        //return nb >= use_max;
+        return false;
     }
 
     public Task Task { get { return task; } }

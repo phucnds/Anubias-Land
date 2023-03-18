@@ -19,7 +19,7 @@ public class ActionWalkingAround : ActionBasic
 
     public override void UpdateAction(Character character, Interactable target)
     {
-        if (character.HasReachedTarget() || !character.IsReallyMoving())
+        if (character.HasReachedTarget())
         {
             float mult = GameMgr.Instance.GetSpeedMultiplier();
             state_timer += mult * Time.deltaTime;
@@ -55,7 +55,11 @@ public class ActionWalkingAround : ActionBasic
         float range = Random.Range(wander_min, wander_range);
         float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         Vector3 spos = start_pos;
-        Vector3 pos = spos + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * range;
+
+        int x = Mathf.RoundToInt(Mathf.Cos(angle) * range);
+        int z = Mathf.RoundToInt(Mathf.Sin(angle) * range);
+
+        Vector3 pos = spos + new Vector3(x % 2 == 0 ? x : x - 1, 0f, z % 2 == 0 ? z : z - 1);
         character.Move(pos);
     }
 }

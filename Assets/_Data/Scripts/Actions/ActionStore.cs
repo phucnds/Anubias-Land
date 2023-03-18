@@ -10,7 +10,7 @@ public class ActionStore : ActionBasic
         Storage storage = target.GetComponent<Storage>();
         if (storage != null)
         {
-            character.FaceToward(target.transform.position);
+            character.FaceToward(target.transform);
             character.WaitFor(0.5f, () =>
             {
                 character.inventoryItem -= 10;

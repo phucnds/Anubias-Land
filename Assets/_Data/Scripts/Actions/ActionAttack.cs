@@ -7,7 +7,7 @@ public class ActionAttack : ActionBasic
 {
     public override void StartAction(Character character, Interactable target)
     {
-        character.FaceToward(target.transform.position);
+        character.FaceToward(target.transform);
     }
 
     public override void StopAction(Character character, Interactable target)
@@ -34,6 +34,7 @@ public class ActionAttack : ActionBasic
                 
             else
             {
+                character.FaceToward(target.transform);
                 Debug.Log("in range");
                 character.Attack.AttackStrike(destruct);
             }

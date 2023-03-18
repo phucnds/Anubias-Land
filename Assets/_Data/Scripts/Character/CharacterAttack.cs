@@ -76,7 +76,8 @@ public class CharacterAttack : MonoBehaviour
             onAttack.Invoke(target);
 
         //Face target
-        character.FaceToward(target.transform.position);
+        character.FaceToward(target.transform);
+        //character.transform.LookAt(target.transform);
 
         //Wait for windup
         float windup = attack_windup;
@@ -165,7 +166,7 @@ public class CharacterAttack : MonoBehaviour
         if (target != null)
         {
             float dist = (target.transform.position - transform.position).magnitude;
-            return dist < GetTargetAttackRange(target);
+            return dist <= GetTargetAttackRange(target);
         }
         return false;
     }

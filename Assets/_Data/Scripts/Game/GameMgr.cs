@@ -16,13 +16,15 @@ public class GameMgr : MonoBehaviour
     [SerializeField] private UIManager uiCanvas;
 
     public static GameMgr Instance { get; private set; }
-
-    [SerializeField] private float speed_multiplier = 1f;
+   
+    [SerializeField] private int timeScale = 1;
+    private float speed_multiplier = 1f;
 
     private void Awake()
     {
         Instance = this;
         LoadData();
+        Time.timeScale = timeScale;
     }
 
     private void LoadData()
@@ -41,7 +43,7 @@ public class GameMgr : MonoBehaviour
     {
         if (mult > 10) mult = 10;
         if (mult < 0) mult = 0;
-        speed_multiplier = mult;
+        Time.timeScale = mult;
     }
 
     public bool IsPaused()

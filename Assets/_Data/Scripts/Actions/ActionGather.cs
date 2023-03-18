@@ -15,7 +15,7 @@ public class ActionGather : ActionBasic
         if (gather != null)
         {
             character.Animate(gather.harvest_anim, true);
-            character.FaceToward(target.transform.position);
+            character.FaceToward(target.transform);
         }
     }
 

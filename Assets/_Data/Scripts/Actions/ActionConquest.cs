@@ -20,7 +20,7 @@ public class ActionConquest : ActionBasic
 
     public override void UpdateAction(Character character, Interactable target)
     {
-        if (character.HasReachedTarget() || !character.IsReallyMoving())
+        if (character.HasReachedTarget() )
         {
             float mult = GameMgr.Instance.GetSpeedMultiplier();
             state_timer += mult * Time.deltaTime;
@@ -44,7 +44,7 @@ public class ActionConquest : ActionBasic
             else
             {
                 state_timer = Random.Range(-1f, 1f);
-                FindWanderTarget(character, target);
+                //FindWanderTarget(character, target);
             }
 
         }
