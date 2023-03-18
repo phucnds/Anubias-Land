@@ -23,7 +23,7 @@ public class ActionAttack : ActionBasic
 
         if (character.Attack.IsCooldownReady())
         {
-            if (character.Attack.IsAttackTargetInRange(destruct.Interactable) && character.HasReachedTarget())
+            if (character.Attack.IsAttackTargetInRange(destruct.Interactable))
             {
                 
                 character.Attack.AttackStrike(destruct);

@@ -106,7 +106,7 @@ MonoBehaviour:
     sensitivity: 10
     maximumInterval: 5
     visualizeSensitivity: 0
-  canMove: 1
+  canMove: 0
   speed: 2
   orientation: 0
   enableRotation: 1
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed44410415e6fb4798668052f71fd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move_target: {x: 0, y: 0, z: 0}
   is_Idle: 0
   hasReachedTarget: 0
   inventoryItem: 0
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack_type: 5
   attack_damage: 5
-  attack_range: 1
+  attack_range: 6
   attack_cooldown: 2
   attack_windup: 0.7
   attack_windout: 0.4

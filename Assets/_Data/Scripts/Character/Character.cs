@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
     private bool is_moving = false;
     private Vector3 moving;
     private Vector3 facing;
-    private Vector3 move_target;
+    public Vector3 move_target;
     private Interactable move_action_target;
     private int action_target_pos;
     private bool move_action_auto = false;
@@ -46,7 +46,7 @@ public class Character : MonoBehaviour
     private bool is_waiting = false;
     private bool is_dead = false;
     private float update_timer = 0f;
-    
+
 
     private LinkedList<CharacterOrder> action_queue = new LinkedList<CharacterOrder>();
 
@@ -127,7 +127,7 @@ public class Character : MonoBehaviour
             update_timer = 0f;
             SlowUpdate();
         }
-        
+
     }
 
     private void UpdateAction()
@@ -177,8 +177,8 @@ public class Character : MonoBehaviour
 
 
         //Reached attack target
-        // else if (IsAttackTargetInRange())
-        //     InteractTarget(move_action_target, move_action_auto);
+        else if (IsAttackTargetInRange())
+            InteractTarget(move_action_target, move_action_auto);
 
         //Obstacles
         // else if (is_fronted)
@@ -263,6 +263,7 @@ public class Character : MonoBehaviour
         if (target.IsInteractFull())
             return;
 
+        ai.canMove = true;
         is_moving = true;
         move_action_target = target;
         action_target = null;
@@ -275,6 +276,7 @@ public class Character : MonoBehaviour
 
     public void MoveTo(Vector3 pos)
     {
+        ai.canMove = true;
         is_moving = true;
         move_target = pos;
         move_action_target = null;
@@ -286,6 +288,7 @@ public class Character : MonoBehaviour
 
     public void Move(Vector3 pos)
     {
+        ai.canMove = true;
         is_moving = true;
         move_target = pos;
         move_action_target = null;
@@ -304,6 +307,7 @@ public class Character : MonoBehaviour
 
     public void StopMove()
     {
+        ai.canMove = false;
         is_moving = false;
         move_action_target = null;
         move_action_auto = false;
