@@ -148,6 +148,11 @@ public class Civilian : MonoBehaviour
         return current_work;
     }
 
+    public int GetPriorityWork()
+    {
+        return current_work.priority + attributes.GetPriorityWork(current_work.id);
+    }
+
     public Interactable GetWorkTarget()
     {
         return work_target;

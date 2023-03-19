@@ -20,7 +20,7 @@ public class ActionConquest : ActionBasic
 
     public override void UpdateAction(Character character, Interactable target)
     {
-        if (character.HasReachedTarget() )
+        if (character.HasReachedTarget())
         {
             float mult = GameMgr.Instance.GetSpeedMultiplier();
             state_timer += mult * Time.deltaTime;
@@ -47,6 +47,8 @@ public class ActionConquest : ActionBasic
                 FindWanderTarget(character, target);
             }
 
+            character.Civilian.Attributes.Deployment+= Random.Range(-2,0);
+            character.Civilian.Attributes.Regen+= Random.Range(-2, 4);
         }
 
     }

@@ -111,7 +111,7 @@ MonoBehaviour:
   speed: 2
   orientation: 0
   enableRotation: 1
-  rotationSpeed: 50
+  rotationSpeed: 250
   interpolatePathSwitches: 0
   switchPathInterpolationSpeed: 5
   targetCompatibility: {fileID: 0}
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack_type: 5
   attack_damage: 5
-  attack_range: 6
+  attack_range: 0.1
   attack_cooldown: 2
   attack_windup: 0.7
   attack_windout: 0.4

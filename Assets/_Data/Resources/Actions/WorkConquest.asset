@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WorkConquest
   m_EditorClassIdentifier: 
   id: conquest
-  priority: 0
+  priority: 20
   range: 1000
   conquest: {fileID: 11400000, guid: 114c94ba3d5ce5344ac6cb33062bb331, type: 2}

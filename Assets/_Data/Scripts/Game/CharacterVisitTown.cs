@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterVisitTown : MonoBehaviour
 {
-    [SerializeField] private GameObject characterPrefabs;
+    [SerializeField] private GameObject[] characterPrefabs;
     [SerializeField] private int amount = 5;
 
 
@@ -23,7 +23,7 @@ public class CharacterVisitTown : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             yield return new WaitForSeconds(2f);
-            GameObject characterGameObject = Instantiate(characterPrefabs, transform.position, Quaternion.identity, transform);
+            GameObject characterGameObject = Instantiate(characterPrefabs[Random.Range(0,characterPrefabs.Length)], transform.position, Quaternion.identity, transform);
             characterGameObject.name = "Character_" + i;
             Character character = characterGameObject.GetComponent<Character>();
 

@@ -104,7 +104,7 @@ public class CivilianManager : MonoBehaviour
         {
             if (civilian.IsAuto() || civilian.IsIdle())
             {
-                if (!civilian.IsWorking() || work.priority > civilian.GetWork().priority)
+                if (!civilian.IsWorking() || work.priority > civilian.GetPriorityWork())
                 {
                     //Debug.Log("isn't working");
                     float dist = (civilian.transform.position - target.Transform.position).magnitude;

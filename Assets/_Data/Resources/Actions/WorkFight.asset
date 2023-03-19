@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WorkFight
   m_EditorClassIdentifier: 
   id: fight
-  priority: 100
+  priority: 10
   range: 1000
   action_attack: {fileID: 0}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ActionWalkingAround
   m_EditorClassIdentifier: 
   id: walking
-  wander_min: 6
+  wander_min: 9
   wander_range: 15
-  wander_interval: 10
+  wander_interval: 20

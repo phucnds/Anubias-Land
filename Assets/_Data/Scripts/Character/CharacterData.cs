@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CharacterData : MonoBehaviour
 {
-    public float Stamina = 0;
-    public float Satiety = 0;
+    private float Stamina = 0;
+    private float Satiety = 0;
 
     public Dictionary<AttributeType, float> attributes = new Dictionary<AttributeType, float>();
 

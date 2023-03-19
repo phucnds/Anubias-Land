@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class CivilianAttribute : MonoBehaviour
     [Header("Auto Eat")]
     public bool auto_eat = true;        //Will the colonist try to eat automatically when hungry?
 
+    public int Regen = 1;
+    public int Deployment = 1; 
 
     private Character character;
     private CharacterData characterData;
@@ -147,6 +150,18 @@ public class CivilianAttribute : MonoBehaviour
     {
         if(GetAttributeValue(type) >= GetAttributeMax(type)) return true;
         return false;
+    }
+
+    public int GetPriorityWork(string id)
+    {
+        if(id == "regen")
+        {
+            return Regen;
+        }
+
+        else{
+            return Deployment;
+        }
     }
 
     public Character Character { get { return character; } }

@@ -24,7 +24,7 @@ public class Character : MonoBehaviour
 {
     [Header("Move")]
     private float move_speed = 2;      //How fast the colonist moves?
-    private float rotate_speed = 100;   //How fast it can rotate
+    private float rotate_speed = 250;   //How fast it can rotate
 
     private bool is_moving = false;
     private Vector3 moving;
@@ -271,6 +271,7 @@ public class Character : MonoBehaviour
         move_action_auto = auto;
         action_target_pos = target.GetInteractPositionIndex(this);
         move_target = target.GetInteractPosition(action_target_pos);
+        //ai.Move(GridHelper.ConvertPos(move_target));
         ai.destination = GridHelper.ConvertPos(move_target);
     }
 
@@ -283,7 +284,8 @@ public class Character : MonoBehaviour
         action_target = null;
         current_action = null;
         move_action_auto = false;
-        ai.destination = GridHelper.ConvertPos(pos);
+        //ai.Move(GridHelper.ConvertPos(pos));
+        ai.destination = GridHelper.ConvertPos(move_target);
     }
 
     public void Move(Vector3 pos)
@@ -295,7 +297,8 @@ public class Character : MonoBehaviour
         action_target = null;
         //current_action = null;
         move_action_auto = true;
-        ai.destination = GridHelper.ConvertPos(pos);
+        //ai.Move(GridHelper.ConvertPos(pos));
+        ai.destination = GridHelper.ConvertPos(move_target);
     }
 
     public Vector3 GetLocalVelocity()
