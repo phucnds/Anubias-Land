@@ -2683,7 +2683,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.28978413, y: 0.00000001646809, z: -0.000000004986136, w: 0.95709205}
+  m_LocalRotation: {x: 0.28978413, y: -0.000000016468093, z: 0.0000000049861373, w: 0.95709205}
   m_LocalPosition: {x: 0, y: 18, z: -27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4500,7 +4500,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598456051}
-  m_LocalRotation: {x: 0.28978413, y: 0.00000001646809, z: -0.000000004986136, w: 0.95709205}
+  m_LocalRotation: {x: 0.28978413, y: -0.000000016468093, z: 0.0000000049861373, w: 0.95709205}
   m_LocalPosition: {x: 0, y: 18, z: -27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5791,6 +5791,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 4, z: 6}
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!1 &715958771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8274167086682331703, guid: 61217e7e777e98d41841c7aaf0116308,
+    type: 3}
+  m_PrefabInstance: {fileID: 1702118965}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &723061630
 GameObject:
   m_ObjectHideFlags: 0
@@ -10586,6 +10592,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447898378}
   m_CullTransparentMesh: 1
+--- !u!1 &1449694529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6485580522923082256, guid: fd68e25d0e6536f42b51328f70ab4d9a,
+    type: 3}
+  m_PrefabInstance: {fileID: 472295963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1449694539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449694529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d598485cce704ad4a08538831d53f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workers_max: 5
+  workers: 0
 --- !u!1 &1469033371
 GameObject:
   m_ObjectHideFlags: 0
@@ -11244,7 +11270,7 @@ MonoBehaviour:
   taskManager: {fileID: 1951751133}
   destructManager: {fileID: 2129716787}
   uiCanvas: {fileID: 2827532790028138617}
-  timeScale: 3
+  timeScale: 5
   path: {fileID: 1333493752}
 --- !u!1001 &1581966961
 PrefabInstance:
@@ -11777,6 +11803,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1702118965}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1702118971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715958771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d598485cce704ad4a08538831d53f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workers_max: 5
+  workers: 0
 --- !u!1 &1706964749
 GameObject:
   m_ObjectHideFlags: 0

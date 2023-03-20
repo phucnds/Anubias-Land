@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class Civilian : MonoBehaviour
 {
-
     public static event UnityAction<Civilian> OnAnyCivilianrSpawned;
     public static event UnityAction<Civilian> OnAnyCivilianDeath;
 
@@ -27,7 +26,6 @@ public class Civilian : MonoBehaviour
         character = GetComponent<Character>();
         attributes = GetComponent<CivilianAttribute>();
         GameMgr.Instance.CivilianManager?.RegisterColonist(this);
-
     }
 
     // Start is called before the first frame update
@@ -44,8 +42,6 @@ public class Civilian : MonoBehaviour
 
     private void Update()
     {
-
-
         if (GameMgr.Instance.IsPaused())
             return;
 
@@ -53,17 +49,12 @@ public class Civilian : MonoBehaviour
         //     return;
 
         //Current Work
-       
 
         current_work?.UpdateWork(this);
-
-
     }
 
     public bool IsAnyDepleted()
     {
-        
-
         return false;
     }
 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WorkRegen
   m_EditorClassIdentifier: 
   id: regen
-  priority: 50
+  priority: 0
   range: 100
   walking: {fileID: 11400000, guid: 2ff685808a4d1ca479a12255992f6506, type: 2}

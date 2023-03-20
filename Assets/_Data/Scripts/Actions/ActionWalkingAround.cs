@@ -45,8 +45,9 @@ public class ActionWalkingAround : ActionBasic
                 FindWanderTarget(character, target);
             }
 
-            character.Civilian.Attributes.Deployment += Random.Range(0, 4);
-            character.Civilian.Attributes.Regen += Random.Range(-2, 0);
+            character.Civilian.Attributes.Idle -= 20;
+            if (character.Civilian.Attributes.Idle <= 0) character.Civilian.Attributes.Deployment = 100;
+            
         }
 
     }

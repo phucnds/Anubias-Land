@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: fight
   priority: 10
-  range: 1000
+  range: 2000
   action_attack: {fileID: 0}

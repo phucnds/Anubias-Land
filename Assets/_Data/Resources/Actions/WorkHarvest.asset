@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WorkHarvest
   m_EditorClassIdentifier: 
   id: harvest
-  priority: 25
+  priority: 10
   range: 100
   action_gather: {fileID: 11400000, guid: 375d7b8f139100c47a4105344e35cacd, type: 2}

@@ -104,8 +104,15 @@ public class CivilianManager : MonoBehaviour
         {
             if (civilian.IsAuto() || civilian.IsIdle())
             {
+                if(civilian.IsWorking())
+                {
+                    Debug.Log("work.priority: " + work.priority);
+                    Debug.Log("civilian.GetPriorityWork: " + civilian.GetPriorityWork());
+                }
+                
                 if (!civilian.IsWorking() || work.priority > civilian.GetPriorityWork())
                 {
+                    
                     //Debug.Log("isn't working");
                     float dist = (civilian.transform.position - target.Transform.position).magnitude;
                     if (dist < work.range && civilian.CanDoWork(work, target))

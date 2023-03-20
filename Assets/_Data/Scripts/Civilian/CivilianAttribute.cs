@@ -14,8 +14,8 @@ public class CivilianAttribute : MonoBehaviour
     [Header("Auto Eat")]
     public bool auto_eat = true;        //Will the colonist try to eat automatically when hungry?
 
-    public int Regen = 1;
-    public int Deployment = 1; 
+    public int Idle = 0;
+    public int Deployment = 100; 
 
     private Character character;
     private CharacterData characterData;
@@ -156,7 +156,7 @@ public class CivilianAttribute : MonoBehaviour
     {
         if(id == "regen")
         {
-            return Regen;
+            return Idle;
         }
 
         else{

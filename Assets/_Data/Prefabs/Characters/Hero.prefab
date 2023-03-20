@@ -99,7 +99,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_work: {fileID: 0}
   manual_order: 0
---- !u!114 &6184237720017729084
+--- !u!114 &425868593706305461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684396634555251500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e319ba43d3d3d384ab05ac9ccbc557e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2962566513827831257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,17 +127,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 306c1f925e042c842abb0da902343468, type: 2}
   - {fileID: 11400000, guid: f3e8e15fc33ed404a8738df7145688c3, type: 2}
   auto_eat: 1
---- !u!114 &6253343642246374098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6684396634555251500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e319ba43d3d3d384ab05ac9ccbc557e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stamina: 0
-  Satiety: 0
+  Idle: 0
+  Work: 100
