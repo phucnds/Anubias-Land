@@ -29,13 +29,13 @@ public class Character : MonoBehaviour
     private bool is_moving = false;
     private Vector3 moving;
     private Vector3 facing;
-    public Vector3 move_target;
+    private Vector3 move_target;
     private Interactable move_action_target;
     private int action_target_pos;
     private bool move_action_auto = false;
 
-    private ActionBasic current_action = null;
-    private ActionBasic next_action = null;
+    public ActionBasic current_action = null;
+    public ActionBasic next_action = null;
     private Interactable action_target = null;
     private Vector3 last_target_pos;
     private float action_progress = 0f;
@@ -73,7 +73,7 @@ public class Character : MonoBehaviour
     }
     #endregion
 
-    IAstarAI ai;
+    AILerp ai;
     private Animator animator;
 
     private void Awake()
@@ -84,6 +84,10 @@ public class Character : MonoBehaviour
         civilian = GetComponent<Civilian>();
         interact = GetComponent<Interactable>();
         attack = GetComponent<CharacterAttack>();
+
+        ai = GetComponent<AILerp>();
+        if (ai != null) ai.onSearchPath += UpdateMove;
+        ai.enableRotation = false;
     }
 
     private void Start()
@@ -94,12 +98,6 @@ public class Character : MonoBehaviour
     private void OnDestroy()
     {
         OnAnyCharacterDeath?.Invoke(this);
-    }
-
-    void OnEnable()
-    {
-        ai = GetComponent<IAstarAI>();
-        if (ai != null) ai.onSearchPath += UpdateMove;
     }
 
     void OnDisable()
@@ -149,7 +147,7 @@ public class Character : MonoBehaviour
     private void UpdateMove()
     {
         float mult = GameMgr.Instance.GetSpeedMultiplier();
-        ai.maxSpeed = move_speed * mult;
+        ai.speed = move_speed * mult;
         //GetComponent<AILerp>().rotationSpeed = rotate_speed * mult;
         if (move_action_target != null && ai != null) ai.destination = GridHelper.ConvertPos(move_target);
         moving = ai.velocity;
@@ -264,6 +262,7 @@ public class Character : MonoBehaviour
             return;
 
         ai.canMove = true;
+        ai.enableRotation = true;
         is_moving = true;
         move_action_target = target;
         action_target = null;
@@ -278,6 +277,7 @@ public class Character : MonoBehaviour
     public void MoveTo(Vector3 pos)
     {
         ai.canMove = true;
+        ai.enableRotation = true;
         is_moving = true;
         move_target = pos;
         move_action_target = null;
@@ -291,6 +291,7 @@ public class Character : MonoBehaviour
     public void Move(Vector3 pos)
     {
         ai.canMove = true;
+        ai.enableRotation = true;
         is_moving = true;
         move_target = pos;
         move_action_target = null;
@@ -311,6 +312,7 @@ public class Character : MonoBehaviour
     public void StopMove()
     {
         ai.canMove = false;
+        ai.enableRotation = false;
         is_moving = false;
         move_action_target = null;
         move_action_auto = false;
