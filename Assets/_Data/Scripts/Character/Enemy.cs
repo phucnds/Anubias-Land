@@ -246,7 +246,7 @@ public class Enemy : MonoBehaviour
         if (attack_target != null && HasAttackBehavior())
         {
             ChangeState(EnemyState.Attack);
-            character.AttackTarget(attack_target);
+            AttackTarget(attack_target);
         }
         else
         {

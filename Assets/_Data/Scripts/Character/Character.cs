@@ -542,7 +542,7 @@ public class Character : MonoBehaviour
         // facing = pos - transform.position;
         // facing.y = 0f;
         // facing.Normalize();
-        transform.LookAt(GridHelper.ConvertPos(pos));
+        transform.LookAt(pos);
     }
 
     public bool IsReallyMoving()

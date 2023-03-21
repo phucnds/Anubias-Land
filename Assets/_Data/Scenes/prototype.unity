@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11270,7 +11270,7 @@ MonoBehaviour:
   taskManager: {fileID: 1951751133}
   destructManager: {fileID: 2129716787}
   uiCanvas: {fileID: 2827532790028138617}
-  timeScale: 1
+  timeScale: 5
   path: {fileID: 1333493752}
 --- !u!1001 &1581966961
 PrefabInstance:
