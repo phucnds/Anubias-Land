@@ -17,10 +17,13 @@ public class CharacterAttack : MonoBehaviour
     public int attack_damage = 5;       //Basic damage without equipment
     public float attack_range = 1.2f;   //How far can you attack (melee)
     public float attack_cooldown = 1f;  //Seconds of waiting in between each attack
-    public float attack_windup = 0.7f;  //Timing (in secs) between the start of the attack and the hit
-    public float attack_windout = 0.4f; //Timing (in secs) between the hit and the end of the attack
-                                        //public float attack_energy = 1f;    //Energy cost to attack (not implemented yet)
     public GameObject default_projectile; //Default projectile prefab (ranged attack only)
+
+
+    [SerializeField] Transform rightHandTransform = null;
+    [SerializeField] Transform leftHandTransform = null;
+    [SerializeField] Transform leftHandShieldTransform = null;
+    [SerializeField] WeaponConfig defaultWeapon = null;
 
     public UnityAction<Destructible> onAttack;
     public UnityAction<Destructible> onAttackHit;
@@ -78,18 +81,15 @@ public class CharacterAttack : MonoBehaviour
 
         //Face target
 
-        //Wait for windup
-        float windup = attack_windup;
-        yield return new WaitForSeconds(windup);
+      
 
         DoAttackStrike(target);
 
         //Reset timer
         attack_timer = 0f;
 
-        //Wait for the end of the attack before character can move again
-        float windout = attack_windout;
-        yield return new WaitForSeconds(windout);
+ 
+        yield return new WaitForSeconds(0.0f);
 
         character.StopWait();
         is_attacking = false;
@@ -131,6 +131,7 @@ public class CharacterAttack : MonoBehaviour
         if (IsAttackTargetInRange(target.Interactable))
         {
             target.TakeDamage(character, GetAttackDamage(target));
+            //Debug.Log(GetAttackDamage(target));
 
             if (onAttackHit != null)
                 onAttackHit.Invoke(target);

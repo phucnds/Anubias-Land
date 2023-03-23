@@ -222,7 +222,7 @@ public class Enemy : MonoBehaviour
 
                         
                         Vector3 dir = interact.GetInteractCenter() - pos;
-                        Debug.Log(dir.magnitude + " : " + min_dist);
+                        //Debug.Log(dir.magnitude + " : " + min_dist);
                         if (dir.magnitude <= min_dist)
                         {
                             float dangle = detect_angle / 2f; // /2 for each side

@@ -104,11 +104,11 @@ public class CivilianManager : MonoBehaviour
         {
             if (civilian.IsAuto() || civilian.IsIdle())
             {
-                if(civilian.IsWorking())
-                {
-                    Debug.Log("work.priority: " + work.priority);
-                    Debug.Log("civilian.GetPriorityWork: " + civilian.GetPriorityWork());
-                }
+                // if(civilian.IsWorking())
+                // {
+                //     Debug.Log("work.priority: " + work.priority);
+                //     Debug.Log("civilian.GetPriorityWork: " + civilian.GetPriorityWork());
+                // }
                 
                 if (!civilian.IsWorking() || work.priority > civilian.GetPriorityWork())
                 {
