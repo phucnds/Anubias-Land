@@ -77,6 +77,12 @@ PrefabInstance:
       propertyPath: target_group
       value: Undead
       objectReference: {fileID: 0}
+    - target: {fileID: 8367676829432019843, guid: 8ca22c65c370cd54eb39d00ea96e8066,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 84aae8704dd85834491815b803316ac2,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ca22c65c370cd54eb39d00ea96e8066, type: 3}
 --- !u!1 &1432025131569942075 stripped

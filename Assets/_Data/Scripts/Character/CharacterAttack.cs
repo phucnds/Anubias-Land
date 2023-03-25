@@ -14,11 +14,9 @@ public enum AttackType
 public class CharacterAttack : MonoBehaviour
 {
     public AttackType attack_type = AttackType.Melee;
-    public int attack_damage = 5;       //Basic damage without equipment
-    public float attack_range = 1.2f;   //How far can you attack (melee)
-    public float attack_cooldown = 1f;  //Seconds of waiting in between each attack
-    public GameObject default_projectile; //Default projectile prefab (ranged attack only)
-
+    public int attack_damage = 5;
+    public float attack_range = 1.2f;
+    public float attack_cooldown = 1f;
 
     [SerializeField] Transform rightHandTransform = null;
     [SerializeField] Transform leftHandTransform = null;
@@ -35,11 +33,30 @@ public class CharacterAttack : MonoBehaviour
     private float attack_timer = 0f;
     private bool is_attacking = false;
 
+    WeaponConfig currentWeaponConfig;
+    LazyValue<Weapon> currentWeapon;
+
     void Awake()
     {
         character = GetComponent<Character>();
         destruct = GetComponent<Destructible>();
+
+        currentWeaponConfig = defaultWeapon;
+        currentWeapon = new LazyValue<Weapon>(SetupDefaultWeapon);
     }
+
+    private void Start()
+    {
+        currentWeapon.ForceInit();
+    }
+
+    private Weapon SetupDefaultWeapon()
+    {
+        return AttachWeapon(defaultWeapon);
+    }
+
+
+
 
     void Update()
     {
@@ -81,14 +98,14 @@ public class CharacterAttack : MonoBehaviour
 
         //Face target
 
-      
+
 
         DoAttackStrike(target);
 
         //Reset timer
         attack_timer = 0f;
 
- 
+
         yield return new WaitForSeconds(0.0f);
 
         character.StopWait();
@@ -223,4 +240,13 @@ public class CharacterAttack : MonoBehaviour
             return destruct.target_group;
         return null;
     }
+
+    private Weapon AttachWeapon(WeaponConfig weapon)
+    {
+        //Debug.Log("AttachWeapon");
+        Animator animator = GetComponent<Animator>();
+        return weapon.Spawn(rightHandTransform, leftHandTransform, animator);
+    }
+
+
 }

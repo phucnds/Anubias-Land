@@ -1,15 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponConfig : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    internal Weapon Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator)
-    {
-        throw new NotImplementedException();
-    }
-
     // Start is called before the first frame update
     void Start()
     {

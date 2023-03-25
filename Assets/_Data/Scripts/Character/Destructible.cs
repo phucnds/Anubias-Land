@@ -12,6 +12,9 @@ public enum AttackTeam
     CantBeAttacked = 50, //Cannot be attacked
 }
 
+[Serializable]
+public class TakeDamageEvent : UnityEvent<float> { }
+
 public class Destructible : MonoBehaviour
 {
     [Header("Stats")]
@@ -21,8 +24,16 @@ public class Destructible : MonoBehaviour
     public AttackTeam target_team;
     public String target_group = "Hero";
 
+    [SerializeField] TakeDamageEvent takeDamage;
+
+
     public static event UnityAction<Destructible> OnAnyDestructibleCreated;
     public static event UnityAction<Destructible> OnAnyDestructibleDestroyed;
+
+    
+
+
+
 
     private Interactable interact;
 
@@ -32,7 +43,8 @@ public class Destructible : MonoBehaviour
         OnAnyDestructibleCreated?.Invoke(this);
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         OnAnyDestructibleDestroyed?.Invoke(this);
     }
 
@@ -45,6 +57,7 @@ public class Destructible : MonoBehaviour
         // }
 
         TakeDamage(damage);
+        takeDamage?.Invoke(damage);
     }
 
     // //Take damage from source

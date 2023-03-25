@@ -77,6 +77,12 @@ PrefabInstance:
       propertyPath: target_group
       value: Hero
       objectReference: {fileID: 0}
+    - target: {fileID: 8367676829432019843, guid: 8ca22c65c370cd54eb39d00ea96e8066,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: ee4335783bc24784db8be75393125b8a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ca22c65c370cd54eb39d00ea96e8066, type: 3}
 --- !u!1 &6684396634555251500 stripped
@@ -128,4 +134,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f3e8e15fc33ed404a8738df7145688c3, type: 2}
   auto_eat: 1
   Idle: 0
-  Work: 100
+  Deployment: 100
