@@ -62,5 +62,10 @@ public class WeaponConfig : ScriptableObject
     {
         return projectile != null;
     }
+
+    public void LaunchProjectile(Transform rightHandTransform, Transform leftHandTransform, Destructible target, GameObject gameObject, int v)
+    {
+        
+    }
    
 }

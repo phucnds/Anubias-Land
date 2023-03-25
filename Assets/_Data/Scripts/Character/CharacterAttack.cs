@@ -18,6 +18,8 @@ public class CharacterAttack : MonoBehaviour
     public float attack_range = 1.2f;
     public float attack_cooldown = 1f;
 
+    public float timeWindup = 0.2f;
+
     [SerializeField] Transform rightHandTransform = null;
     [SerializeField] Transform leftHandTransform = null;
     [SerializeField] Transform leftHandShieldTransform = null;
@@ -85,28 +87,19 @@ public class CharacterAttack : MonoBehaviour
         return attack_type != AttackType.None;
     }
 
-    //Melee or ranged targeting one target
     private IEnumerator AttackRun(Destructible target)
     {
         character.FaceToward(target.transform.position);
         character.Wait();
         is_attacking = true;
 
-        //Start animation
         if (onAttack != null)
             onAttack.Invoke(target);
 
-        //Face target
-
-
-
+        yield return new WaitForSeconds(timeWindup);
         DoAttackStrike(target);
-
-        //Reset timer
+      
         attack_timer = 0f;
-
-
-        yield return new WaitForSeconds(0.0f);
 
         character.StopWait();
         is_attacking = false;
@@ -118,34 +111,12 @@ public class CharacterAttack : MonoBehaviour
             return;
 
         //Ranged attack
-        // bool is_ranged = attack_type == AttackType.Ranged //|| HasRangedWeapon();
-        // ItemEquipData equipped = GetBestWeapon();
-        // ItemProjData projectile = GetRangedProjectile(equipped);
-        // GameObject proj_default = GetDefaultProjectile();
-        // if (is_ranged && (projectile != null || proj_default != null))
-        // {
-        //     int damage = GetAttackDamage(target);
-        //     if (projectile != null)
-        //         damage += projectile.damage_bonus;
-
-        //     Vector3 pos = GetProjectileSpawnPos();
-        //     Vector3 dir = target.GetCenter() - pos;
-        //     GameObject prefab = projectile != null ? projectile.projectile_prefab : proj_default;
-        //     GameObject proj = Instantiate(prefab, pos, Quaternion.LookRotation(dir.normalized, Vector3.up));
-        //     Projectile project = proj.GetComponent<Projectile>();
-        //     project.target = target;
-        //     project.shooter = select;
-        //     project.shooter_character = character;
-        //     project.dir = dir.normalized;
-        //     project.damage = damage;
-
-        //     //Remove projectile
-        //     if (projectile != null && character.Equip != null)
-        //         character.Equip.EquipData.AddItem(projectile.id, -1);
-        // }
+        if(currentWeaponConfig.HasProjectile()){
+            currentWeaponConfig.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, GetAttackDamage(target));
+        }
 
         //Melee attack
-        if (IsAttackTargetInRange(target.Interactable))
+        else if (IsAttackTargetInRange(target.Interactable))
         {
             target.TakeDamage(character, GetAttackDamage(target));
             //Debug.Log(GetAttackDamage(target));
