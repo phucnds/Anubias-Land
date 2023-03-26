@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Weapon", menuName = "Anubias-Land/Inventory/Weapon", order = 10)]
-public class WeaponConfig : ScriptableObject
+public class WeaponConfig : InventoryItem
 {
 
     [SerializeField] Weapon weaponPrefab = null;

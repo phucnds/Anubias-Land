@@ -13,8 +13,7 @@ public class GameMgr : MonoBehaviour
     [SerializeField] private TaskManager taskManager;
     [SerializeField] private DestructibleManager destructManager;
 
-    [Header("UICanvas")]
-    [SerializeField] private UIManager uiCanvas;
+   
 
     public static GameMgr Instance { get; private set; }
 
@@ -75,5 +74,5 @@ public class GameMgr : MonoBehaviour
     public TaskManager TaskManager { get { return taskManager; } }
     public DestructibleManager DestructibleManager { get { return destructManager; } }
 
-    public UIManager UICanvas { get { return uiCanvas; } }
+    
 }
