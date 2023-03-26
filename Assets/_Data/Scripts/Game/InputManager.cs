@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
@@ -67,6 +68,9 @@ public class InputManager : MonoBehaviour
 
     public float GetCameraZoomAmout()
     {
+
+        if (EventSystem.current.IsPointerOverGameObject()) return 0f;
+
         float zoomAmout = 0f;
 
         if (Input.mouseScrollDelta.y > 0)

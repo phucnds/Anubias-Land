@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
     {
         Vector3 inputMoveDir = InputManager.Instance.GetCameraMoveVector();
 
-        float moveSpeed = 5f;
+        float moveSpeed = 10f;
 
         Vector3 moveVector = transform.forward * inputMoveDir.y + transform.right * inputMoveDir.x;
         transform.position += moveVector * moveSpeed * Time.deltaTime;

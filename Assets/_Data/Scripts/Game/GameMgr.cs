@@ -12,8 +12,9 @@ public class GameMgr : MonoBehaviour
     [SerializeField] private CivilianManager civilianManager;
     [SerializeField] private TaskManager taskManager;
     [SerializeField] private DestructibleManager destructManager;
+    [SerializeField] private Inventory inventory;
 
-   
+
 
     public static GameMgr Instance { get; private set; }
 
@@ -73,6 +74,6 @@ public class GameMgr : MonoBehaviour
     public CivilianManager CivilianManager { get { return civilianManager; } }
     public TaskManager TaskManager { get { return taskManager; } }
     public DestructibleManager DestructibleManager { get { return destructManager; } }
+    public Inventory Inventory { get { return inventory; } }
 
-    
 }

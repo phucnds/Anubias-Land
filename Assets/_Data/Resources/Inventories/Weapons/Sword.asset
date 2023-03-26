@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99bd4e2c1f8d5e74eaae54a7f48c470e, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
+  itemID: 11f1061a-f344-471f-9707-fc60c1dbefe0
+  displayName: Sword
+  description: Strongest sword in the world
+  icon: {fileID: 21300000, guid: d0e9695c0153948809694226675d9b29, type: 3}
+  pickup: {fileID: 1935386234472164805, guid: 3c791629280702d4086d07cd43fc7b04, type: 3}
+  stackable: 0
+  price: 0
+  category: 0
   weaponPrefab: {fileID: 2411595868784999929, guid: 7a880bd3004164046ac2f660b58b0a7c,
     type: 3}
   animatorOverride: {fileID: 22100000, guid: 3fc5aece9cf53c34e91a919a493b1b54, type: 2}
