@@ -15,9 +15,7 @@ public class CharacterAttack : MonoBehaviour
 {
     public AttackType attack_type = AttackType.Melee;
     public int attack_damage = 5;
-    public float attack_range = 1.2f;
     public float attack_cooldown = 1f;
-
     public float timeWindup = 0.2f;
 
     [SerializeField] Transform rightHandTransform = null;
@@ -98,7 +96,7 @@ public class CharacterAttack : MonoBehaviour
 
         yield return new WaitForSeconds(timeWindup);
         DoAttackStrike(target);
-      
+
         attack_timer = 0f;
 
         character.StopWait();
@@ -111,8 +109,9 @@ public class CharacterAttack : MonoBehaviour
             return;
 
         //Ranged attack
-        if(currentWeaponConfig.HasProjectile()){
-            currentWeaponConfig.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, GetAttackDamage(target));
+        if (currentWeaponConfig.HasProjectile())
+        {
+            currentWeaponConfig.LaunchProjectile(rightHandTransform, leftHandTransform, target, character, GetAttackDamage(target));
         }
 
         //Melee attack
@@ -167,7 +166,7 @@ public class CharacterAttack : MonoBehaviour
 
     public float GetAttackRange()
     {
-        return attack_range;
+        return currentWeaponConfig.GetWeaponRange();
     }
 
     public int GetAttackDamage(Destructible target)

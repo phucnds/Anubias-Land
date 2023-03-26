@@ -48,7 +48,7 @@ public class Destructible : MonoBehaviour
         OnAnyDestructibleDestroyed?.Invoke(this);
     }
 
-    public void TakeDamage(Character attacker, int damage)
+    public void TakeDamage(Character attacker, float damage)
     {
         // if (attacker.Colonist != null)
         // {
@@ -69,7 +69,7 @@ public class Destructible : MonoBehaviour
     // }
 
     //Take damage from no sources
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         HP -= damage;
         HP = Mathf.Clamp(HP, 0f, 50000f);

@@ -216,8 +216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack_type: 5
   attack_damage: 5
-  attack_range: 2
   attack_cooldown: 2
+  timeWindup: 0.2
   rightHandTransform: {fileID: 0}
   leftHandTransform: {fileID: 0}
   leftHandShieldTransform: {fileID: 0}
