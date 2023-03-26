@@ -99,8 +99,6 @@ public class Inventory : MonoBehaviour
             inventoryUpdated();
         }
 
-        Debug.Log(HasItem(item));
-
         return true;
     }
 

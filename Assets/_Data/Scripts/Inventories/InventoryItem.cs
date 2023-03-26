@@ -126,5 +126,115 @@ public abstract class InventoryItem : ScriptableObject, ISerializationCallbackRe
 
     }
 
+    #region InventoryEditor Additions
+
+#if UNITY_EDITOR
+    
+    protected void Dirty()
+    {
+        EditorUtility.SetDirty(this);
+    }
+
+    protected void SetUndo(string message)
+    {
+        Undo.RecordObject(this, message);
+    }
+
+    protected bool FloatEquals(float value1, float value2)
+    {
+        return Math.Abs(value1 - value2) < .001f;
+    }
+
+
+    void SetDisplayName(string newDisplayName)
+    {
+        if (newDisplayName == displayName) return;
+        SetUndo("Change Display Name");
+        displayName = newDisplayName;
+        Dirty();
+    }
+
+    void SetDescription(string newDescription)
+    {
+        if (newDescription == description) return;
+        SetUndo("Change Description");
+        description = newDescription;
+        Dirty();
+    }
+
+    void SetPrice(float newPrice)
+    {
+        if (FloatEquals(price, newPrice)) return;
+        SetUndo("Set Price");
+        price = newPrice;
+        Dirty();
+    }
+
+    void SetIcon(Sprite newIcon)
+    {
+        if (icon == newIcon) return;
+        SetUndo("Change Icon");
+        icon = newIcon;
+        Dirty();
+    }
+
+    void SetPickup(GameObject potentialnewPickup)
+    {
+        if (!potentialnewPickup)
+        {
+            SetUndo("Set No Pickup");
+            pickup = null;
+            Dirty();
+            return;
+        }
+        if (!potentialnewPickup.TryGetComponent(out Pickup newPickup)) return;
+        if (pickup == newPickup) return;
+        SetUndo("Change Pickup");
+        pickup = newPickup;
+        Dirty();
+    }
+
+    void SetItemID(string newItemID)
+    {
+        if (itemID == newItemID) return;
+        SetUndo("Change ItemID");
+        itemID = newItemID;
+        Dirty();
+    }
+
+    void SetStackable(bool newStackable)
+    {
+        if (stackable == newStackable) return;
+        SetUndo(stackable ? "Set Not Stackable" : "Set Stackable");
+        stackable = newStackable;
+        Dirty();
+    }
+
+    bool drawInventoryItem = true;
+    [NonSerialized] protected GUIStyle foldoutStyle;
+    [NonSerialized] protected GUIStyle contentStyle;
+    public virtual void DrawCustomInspector()
+    {
+        contentStyle = new GUIStyle { padding = new RectOffset(15, 15, 0, 0) };
+        GUIStyle expandedAreaStyle = new GUIStyle(EditorStyles.textArea) { wordWrap = true };
+
+        foldoutStyle = new GUIStyle(EditorStyles.foldout) { fontStyle = FontStyle.Bold };
+        drawInventoryItem = EditorGUILayout.Foldout(drawInventoryItem, "InventoryItem Data", foldoutStyle);
+        if (!drawInventoryItem) return;
+        EditorGUILayout.BeginVertical(contentStyle);
+        SetItemID(EditorGUILayout.TextField("ItemID (clear to reset", itemID));
+        SetDisplayName(EditorGUILayout.TextField("Display name", displayName));
+        SetPrice(EditorGUILayout.Slider("Price", price, 0, 99999));
+        EditorGUILayout.LabelField("Description");
+        SetDescription(EditorGUILayout.TextArea(description, expandedAreaStyle));
+        SetIcon((Sprite)EditorGUILayout.ObjectField("Icon", icon, typeof(Sprite), false));
+        GameObject potentialPickup = pickup ? pickup.gameObject : null;
+        SetPickup((GameObject)EditorGUILayout.ObjectField("Pickup", potentialPickup, typeof(GameObject), false));
+        SetStackable(EditorGUILayout.Toggle("Stackable", stackable));
+        EditorGUILayout.EndVertical();
+    }
+
+#endif
+    #endregion
 
 }
