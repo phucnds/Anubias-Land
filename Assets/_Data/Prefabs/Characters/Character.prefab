@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 5809687670268684847}
   - component: {fileID: 8367676829432019843}
   - component: {fileID: 9018818140041892146}
+  - component: {fileID: 3528377327169464185}
+  - component: {fileID: 6090088497963909739}
   m_Layer: 10
   m_Name: Character
   m_TagString: Untagged
@@ -240,6 +242,36 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9106f031eca014744ab993ae9c629329, type: 2}
   interact_root: {fileID: 0}
   interact_points: []
+--- !u!114 &3528377327169464185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4450385674643615778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ed866f9ce651549b5eceacffeea372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  characterClass: 0
+  progression: {fileID: 11400000, guid: 0002b0a84e9dfbf418a5ba7de0d94c11, type: 2}
+  levelUpParticleEffect: {fileID: 0}
+  shouldUseModifiers: 0
+--- !u!114 &6090088497963909739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4450385674643615778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbe0879758ecef04684fa3e2c8f6663d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePoints: 0
 --- !u!1001 &4554141140135393310
 PrefabInstance:
   m_ObjectHideFlags: 0
