@@ -12,8 +12,6 @@ public class WeaponConfig : InventoryItem
     [SerializeField] float weaponRange = 2f;
     [SerializeField] bool isRightHanded = true;
     [SerializeField] Projectile projectile = null;
-    [SerializeField] float weaponDamage = 5f;
-    [SerializeField] float percentageBonus = 0;
 
     const string weaponName = "Weapon";
 

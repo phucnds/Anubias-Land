@@ -13,15 +13,13 @@ public enum AttackType
 
 public class CharacterAttack : MonoBehaviour
 {
-    public AttackType attack_type = AttackType.Melee;
-    public int attack_damage = 5;
-    public float attack_cooldown = 1f;
-    public float timeWindup = 0.2f;
-
     [SerializeField] Transform rightHandTransform = null;
     [SerializeField] Transform leftHandTransform = null;
     [SerializeField] Transform leftHandShieldTransform = null;
     [SerializeField] WeaponConfig defaultWeapon = null;
+
+    [SerializeField] private AttackType attack_type = AttackType.Melee;
+    [SerializeField] private float attack_cooldown = 1f;
 
     public UnityAction<Destructible> onAttack;
     public UnityAction<Destructible> onAttackHit;
@@ -32,6 +30,7 @@ public class CharacterAttack : MonoBehaviour
     private Coroutine attack_routine = null;
     private float attack_timer = 0f;
     private bool is_attacking = false;
+    private float timeWindup = 0.2f;
 
     WeaponConfig currentWeaponConfig;
     LazyValue<Weapon> currentWeapon;
@@ -169,9 +168,18 @@ public class CharacterAttack : MonoBehaviour
         return currentWeaponConfig.GetWeaponRange();
     }
 
-    public int GetAttackDamage(Destructible target)
+    public float GetAttackDamage(Destructible target)
     {
-        return attack_damage;
+        float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+        BaseStats baseStats = target.GetComponent<BaseStats>();
+
+        if (baseStats != null)
+        {
+            float defence = baseStats.GetStat(Stat.Defence);
+            damage /= 1 + defence / damage;
+        }
+
+        return damage;
     }
 
     public float GetAttackSpeedMultiplier()

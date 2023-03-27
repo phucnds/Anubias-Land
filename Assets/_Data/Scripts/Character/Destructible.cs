@@ -18,29 +18,76 @@ public class TakeDamageEvent : UnityEvent<float> { }
 public class Destructible : MonoBehaviour
 {
     [Header("Stats")]
-    public float HP = 50000;
+
 
     [Header("Targeting")]
     public AttackTeam target_team;
     public String target_group = "Hero";
 
     [SerializeField] TakeDamageEvent takeDamage;
-
+    [SerializeField] float regenerationPercentage = 70;
 
     public static event UnityAction<Destructible> OnAnyDestructibleCreated;
     public static event UnityAction<Destructible> OnAnyDestructibleDestroyed;
 
-    
-
-
-
-
+    LazyValue<float> healthPoints;
     private Interactable interact;
+
+    bool wasDeadLastFrame = false;
 
     private void Awake()
     {
+        healthPoints = new LazyValue<float>(GetInitialHealth);
         interact = GetComponent<Interactable>();
         OnAnyDestructibleCreated?.Invoke(this);
+    }
+
+    private void Start()
+    {
+        healthPoints.ForceInit();
+    }
+
+    private void Update()
+    {
+        if (healthPoints.value < MaxHP())
+        {
+            healthPoints.value += GetHPRegenRate() * Time.deltaTime;
+            if (healthPoints.value > MaxHP())
+            {
+                healthPoints.value = MaxHP();
+            }
+        }
+    }
+
+    public float CurrentHP()
+    {
+        return healthPoints.value;
+    }
+
+    public float MaxHP()
+    {
+        return GetComponent<BaseStats>().GetStat(Stat.Health);
+    }
+
+    private float GetInitialHealth()
+    {
+        return GetComponent<BaseStats>().GetStat(Stat.Health);
+    }
+
+    public float GetHPRegenRate()
+    {
+        return GetComponent<BaseStats>().GetStat(Stat.HPRegenRate);
+    }
+
+
+    private void OnEnable()
+    {
+        GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<BaseStats>().onLevelUp -= RegenerateHealth;
     }
 
     private void OnDestroy()
@@ -50,35 +97,21 @@ public class Destructible : MonoBehaviour
 
     public void TakeDamage(Character attacker, float damage)
     {
-        // if (attacker.Colonist != null)
-        // {
-        //     attacker.Colonist.Attributes.AddXP(BonusType.AttackValue, damage, interact);
-        //     attacker.Colonist.Attributes.AddXP(BonusType.AttackPercent, damage, interact);
-        // }
-
         TakeDamage(damage);
         takeDamage?.Invoke(damage);
     }
 
-    // //Take damage from source
-    // public void TakeDamage(Selectable attacker, int damage)
-    // {
-    //     TakeDamage(damage);
-    //     if (!dead && attacker != null)
-    //         onDamagedBy?.Invoke(attacker);
-    // }
-
-    //Take damage from no sources
     public void TakeDamage(float damage)
     {
-        HP -= damage;
-        HP = Mathf.Clamp(HP, 0f, 50000f);
+        healthPoints.value -= damage;
+        healthPoints.value = Mathf.Clamp(healthPoints.value, 0f, 50000f);
     }
 
     public bool IsDead()
     {
-        return HP <= 0;
+        return healthPoints.value <= 0;
     }
+
 
     public bool CanBeAttacked()
     {
@@ -107,6 +140,12 @@ public class Destructible : MonoBehaviour
             }
         }
         return nearest;
+    }
+
+    private void RegenerateHealth()
+    {
+        float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health) * regenerationPercentage / 100;
+        healthPoints.value = Mathf.Max(healthPoints.value, regenHealthPoints);
     }
 
     public Interactable Interactable { get { return interact; } }
