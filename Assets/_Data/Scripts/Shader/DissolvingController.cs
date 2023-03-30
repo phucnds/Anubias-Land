@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class DissolvingController : MonoBehaviour
 {
     [SerializeField] SkinnedMeshRenderer skinnedMesh;
     [SerializeField] float refreshRate = 0.025f;
     [SerializeField] float DissolveRate = 0.0125f;
+    [SerializeField] ParticleSystem particleSystems;
 
     private Material[] skinnedMaterials;
-   
+
+
+
 
     private void Start()
     {
@@ -30,6 +34,11 @@ public class DissolvingController : MonoBehaviour
 
     IEnumerator DissolveCo()
     {
+        if (particleSystems != null)
+        {
+            particleSystems.Play();
+        }
+
         if (skinnedMaterials.Length > 0)
         {
             float counter = 0;
