@@ -30,24 +30,33 @@ public class Destructible : MonoBehaviour
     public static event UnityAction<Destructible> OnAnyDestructibleCreated;
     public static event UnityAction<Destructible> OnAnyDestructibleDestroyed;
 
+    public UnityEvent onDie;
+
     LazyValue<float> healthPoints;
     private Interactable interact;
+    private Character character;
+
+    private DissolvingController dissolving;
 
     bool wasDeadLastFrame = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         healthPoints = new LazyValue<float>(GetInitialHealth);
         interact = GetComponent<Interactable>();
+        character = GetComponent<Character>();
+        if (TryGetComponent<DissolvingController>(out DissolvingController d)) dissolving = d;
         OnAnyDestructibleCreated?.Invoke(this);
+
+
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         healthPoints.ForceInit();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (healthPoints.value < MaxHP())
         {
@@ -80,36 +89,64 @@ public class Destructible : MonoBehaviour
     }
 
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         GetComponent<BaseStats>().onLevelUp -= RegenerateHealth;
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         OnAnyDestructibleDestroyed?.Invoke(this);
     }
 
-    public void TakeDamage(Character attacker, float damage)
-    {
-        TakeDamage(damage);
-        takeDamage?.Invoke(damage);
-    }
-
-    public void TakeDamage(float damage)
+    public void TakeDamage(Character instigator, float damage)
     {
         healthPoints.value -= damage;
         healthPoints.value = Mathf.Clamp(healthPoints.value, 0f, 50000f);
+
+        if (IsDead())
+        {
+            onDie.Invoke();
+            AwardExperience(instigator);
+        }
+        else
+        {
+            takeDamage?.Invoke(damage);
+        }
+        UpdateState();
+    }
+
+    private void AwardExperience(Character instigator)
+    {
+        Debug.Log(instigator);
     }
 
     public bool IsDead()
     {
         return healthPoints.value <= 0;
+    }
+
+    private void UpdateState()
+    {
+        Animator animator = GetComponent<Animator>();
+        if (!wasDeadLastFrame && IsDead())
+        {
+            animator.SetTrigger("die");
+            character.Stop();
+
+        }
+
+        if (wasDeadLastFrame && !IsDead())
+        {
+            animator.Rebind();
+        }
+
+        wasDeadLastFrame = IsDead();
     }
 
 
@@ -148,5 +185,14 @@ public class Destructible : MonoBehaviour
         healthPoints.value = Mathf.Max(healthPoints.value, regenHealthPoints);
     }
 
+    private void OnDie()
+    {
+        Debug.Log("die");
+        if (dissolving == null) return;
+        StartCoroutine(dissolving.DissolveCo());
+        Destroy(gameObject,3);
+    }
+
     public Interactable Interactable { get { return interact; } }
+    public Character Character { get { return character; } }
 }

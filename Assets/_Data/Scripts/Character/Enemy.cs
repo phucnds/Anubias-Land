@@ -100,8 +100,8 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if(character.IsDead()) return;
         
-
         if (state == EnemyState.Dead || behavior == EnemyBehavior.None)
             return;
 

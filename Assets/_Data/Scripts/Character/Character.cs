@@ -57,11 +57,10 @@ public class Character : MonoBehaviour
     private Civilian civilian;
     private Interactable interact;
     private CharacterAttack attack;
+    private Destructible destruct;
 
     #region Debug
     [Header("Debug")]
-    public bool is_Idle;
-    public bool hasReachedTarget;
 
     private bool debug = false;
     public int inventoryItem = 0;
@@ -84,6 +83,7 @@ public class Character : MonoBehaviour
         civilian = GetComponent<Civilian>();
         interact = GetComponent<Interactable>();
         attack = GetComponent<CharacterAttack>();
+        destruct = GetComponent<Destructible>();
 
         ai = GetComponent<AILerp>();
         if (ai != null) ai.onSearchPath += UpdateMove;
@@ -107,9 +107,7 @@ public class Character : MonoBehaviour
 
     private void Update()
     {
-
-        is_Idle = IsIdle();
-        hasReachedTarget = HasReachedTarget();
+        if (IsDead()) return;
 
         UpdateAction();
         UpdateMove();
@@ -357,6 +355,11 @@ public class Character : MonoBehaviour
     public bool IsWaiting()
     {
         return is_waiting;
+    }
+
+    public bool IsDead()
+    {
+        return destruct.IsDead();
     }
 
     public void Wait()

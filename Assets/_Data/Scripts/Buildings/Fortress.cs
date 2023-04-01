@@ -38,7 +38,7 @@ public class Fortress : Building
 
     private void SpawnEnemy(Vector3 pos)
     {
-        GameObject prefab = enemyPrefabs[1];
+        GameObject prefab = enemyPrefabs[Random.Range(0,enemyPrefabs.Length)];
         GameObject enemy = Instantiate(prefab, pos, Quaternion.identity, spawnerPoint);
     }
 

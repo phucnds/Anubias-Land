@@ -156,8 +156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_action: {fileID: 0}
   next_action: {fileID: 0}
-  is_Idle: 0
-  hasReachedTarget: 0
   inventoryItem: 0
 --- !u!114 &8131321471444417550
 MonoBehaviour:
@@ -186,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398c95b73323ce640988966828a8ba01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 500
   target_team: 0
   target_group: 
   takeDamage:
@@ -204,6 +201,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  regenerationPercentage: 70
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8367676829432019843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,14 +217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22f8f6ae2c4c774caf7cff98bb053d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack_type: 5
-  attack_damage: 5
-  attack_cooldown: 2
-  timeWindup: 0.2
   rightHandTransform: {fileID: 0}
   leftHandTransform: {fileID: 0}
   leftHandShieldTransform: {fileID: 0}
   defaultWeapon: {fileID: 0}
+  attack_type: 5
+  attack_cooldown: 2
 --- !u!114 &9018818140041892146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingLevel: 1
-  characterClass: 0
+  characterClass: 1
   progression: {fileID: 11400000, guid: 0002b0a84e9dfbf418a5ba7de0d94c11, type: 2}
   levelUpParticleEffect: {fileID: 0}
   shouldUseModifiers: 0

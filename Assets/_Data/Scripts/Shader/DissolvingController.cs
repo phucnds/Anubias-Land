@@ -5,6 +5,7 @@ using UnityEngine.VFX;
 
 public class DissolvingController : MonoBehaviour
 {
+    [SerializeField] GameObject root;
     [SerializeField] SkinnedMeshRenderer skinnedMesh;
     [SerializeField] float refreshRate = 0.025f;
     [SerializeField] float DissolveRate = 0.0125f;
@@ -21,19 +22,16 @@ public class DissolvingController : MonoBehaviour
         {
             skinnedMaterials = skinnedMesh.materials;
         }
+
+        skinnedMesh.gameObject.SetActive(false);
+        root.SetActive(true);
     }
 
-    private void Update()
+    public IEnumerator DissolveCo()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StartCoroutine(DissolveCo());
-        }
-    }
 
-
-    IEnumerator DissolveCo()
-    {
+        skinnedMesh.gameObject.SetActive(true);
+        root.SetActive(false);
         if (particleSystems != null)
         {
             particleSystems.Play();
