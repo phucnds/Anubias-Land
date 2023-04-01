@@ -25,7 +25,7 @@ public class Experience : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E))
         {
-            GainExperience(Time.deltaTime * 100);
+            //GainExperience(Time.deltaTime * 100);
         }
     }
 
